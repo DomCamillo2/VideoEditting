@@ -4,7 +4,12 @@ Stand 11.10.2026. Die folgenden Fälle wurden gegen die Anweisungen gelesen und 
 
 | Fall | Erwartetes Verhalten | Zuständiger Skill |
 |---|---|---|
-| „Mach aus meinem Urlaub einen Film“, Stil fehlt | Früh die drei Richtungen anbieten; Format/Länge knapp klären, Inventur parallel möglich | video-editing, video-brief |
+| „Ich binde dieses GitHub erstmals ein“ | Zuerst alle/ausgewählte/keine Skills, dann sinnvolle MCPs mit Installation; noch keine Stilfrage | video-setup |
+| Vollständiger Klon, alle Projekt-Skills vorhanden | Vorhandene Kopien benennen; Nutzung/Übernahme statt fingierter Neuinstallation anbieten | video-setup |
+| Browser, Doku, Dateizugriff bereits nutzbar | Keine redundanten MCPs nötig; Beibehalten als gültige Auswahl anbieten | video-setup |
+| „Nur Beatcut und Bildauswahl, keine MCPs“ | Nur gewählte Skillkopien installieren; Ablehnung merken, anschließend Filmbriefing | video-setup |
+| Nutzer stimmt konkretem MCP und Projektumfang zu | Bestehende Konfiguration ergänzen, Login/Verbindung prüfen; nicht dieselbe Zustimmung erneut fragen | video-setup |
+| „Mach aus meinem Urlaub einen Film“, Setup steht, Stil fehlt | Drei Stilrichtungen anbieten; Format/Länge knapp klären, Inventur parallel möglich | video-editing, video-brief |
 | „Seriös, schnell, 90 Sekunden, 9:16, keine Gags“ | Vorgaben übernehmen, nicht noch einmal Stil abfragen; schneller Schnitt ohne Comedy | video-brief, video-editing |
 | „Bei der bestehenden lustigen Version nur mehr Gags“ | Bestehendes Briefing nutzen, neue Effekte dosiert hinzufügen, Timing danach prüfen | video-comedy |
 | „Nur die README korrigieren“ | Kein Filmbriefing, keine Medienanalyse, keine Comedy | Kein Video-Skill nötig |
@@ -22,6 +27,6 @@ Stand 11.10.2026. Die folgenden Fälle wurden gegen die Anweisungen gelesen und 
 
 ## Reproduzierbare Prüfungen
 
-`python3 -m unittest discover -s tests -v` enthält 15 neue Skill-/Briefingtests: Profilvorgaben, unabhängige Humor-/Tempowahl, ungültige Werte, kein Überschreiben, nicht-interaktiver Ablauf, fehlende Stilwahl, Dialog samt Fehleingabe, Abbruch ohne Datei, interne Paketressourcen, deterministische ZIPs, beide Installationsziele, Konflikt ohne Teilinstallation, Symlinks, Drift in Kopien und das ausgepackte Standalone-Skript.
+`python3 -m unittest discover -s tests -v` enthält 21 Skill-/Briefingtests: Profilvorgaben, unabhängige Humor-/Tempowahl, ungültige Werte, kein Überschreiben, nicht-interaktiver Ablauf, fehlende Stilwahl, Dialog samt Fehleingabe, Abbruch ohne Datei, interne Paketressourcen, deterministische ZIPs, beide Installationsziele, Konflikt ohne Teilinstallation, Symlinks, Drift in Kopien, das ausgepackte Standalone-Skript sowie sechs Prüfungen für Skill-Teilauswahl, Dry-Run, unbekannte Auswahl, Zielvalidierung und lesenden Status.
 
 Für einen zukünftigen echten Host-Test: in einem neuen Projekt die jeweilige Skill-Auswahl öffnen, die Fälle oben mit synthetischen oder freigegebenen Medien ausführen und tatsächlich geladenen Skill, Host-/Modellversion, Ergebnisdateien und Abweichungen protokollieren. Nicht nur das Vorhandensein eines Skillnamens als erfolgreichen Schnitt werten. Keine privaten Medien für eine Evaluation hochladen, wenn nur lokale Nutzung autorisiert ist.

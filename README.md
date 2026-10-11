@@ -2,19 +2,27 @@
 
 Ein deutschsprachiger Werkzeugkasten für LLM-gestützte Roadtrip-Filme, Freundschafts-Recaps und kurze Reels. Aus echten Schnittkorrekturen entstanden: Metadaten statt Dateisortierung, hörbare Beats statt beliebiger Peaks, vollständige Gesichter statt automatischer Crops und gezielte Comedy statt beliebiger Effekte.
 
-**Hier anfangen:** [START_HERE.md](START_HERE.md). Das Repo liefert Arbeitswissen, Vorlagen, Prüfprogramme und einen ausführbaren Remotion-Effektbaukasten. Die kreative Auswahl und die Sicht-/Hörkontrolle bleiben notwendig; ein Prompt garantiert keinen perfekten Film.
+**Hier anfangen:** [SETUP.md — Skills und MCPs auswählen](SETUP.md). Danach folgt [START_HERE.md — den Film planen](START_HERE.md). Das Repo liefert Arbeitswissen, Vorlagen, Prüfprogramme und einen ausführbaren Remotion-Effektbaukasten. Die kreative Auswahl und Sicht-/Hörkontrolle bleiben notwendig; ein Prompt garantiert keinen perfekten Film.
+
+## Die ersten Nachrichten
+
+1. **Skills:** „Möchtest du alle Skills installieren/übernehmen, nur bestimmte auswählen oder zunächst nur die Anleitung nutzen?“ Host und Zielprojekt werden nur ergänzt, wenn noch unbekannt.
+2. **MCPs:** Das LLM prüft vorhandene Tools und schlägt wenige passende Ergänzungen vor: „Soll ich diese MCPs einrichten, einzelne davon oder keine zusätzlichen?“ Zweck, Zugang und Installationsort werden vorher benannt.
+3. **Danach:** Filmstil, Humor, Länge, Format, Medien und Musik.
+
+Ein vollständiger Klon enthält die Projekt-Skills bereits. Dann geht es um ihre Nutzung oder Übernahme in ein anderes Projekt. Bereits beantwortete Fragen werden nicht wiederholt; zusätzliche MCPs sind optional. [Beispieldialog und Ablauf](SETUP.md) · [MCP-Kandidaten](skills/video-setup/references/integrations.md) · [Recherche vergleichbarer Repos](docs/onboarding-research.md).
 
 ## An dein LLM weitergeben
 
 Repo klonen oder ZIP herunterladen und zusammen mit den eigenen Medien lokal öffnen. Diesen Auftrag einsetzen:
 
-> Lies START_HERE.md und AGENTS.md. Nutze dieses Repository als Arbeitsgrundlage. Meine Medien liegen in [lokaler Ordner], mein Ziel ist [Film/Reel, Länge, Format]. Falls noch offen, lass mich zuerst zwischen seriös ohne Gags, emotional mit etwas Humor und deutlich lustig wählen. Übernimm bereits genannte Wünsche. Prüfe den Projektstand und Aufnahmezeiten, vergleiche ähnliche Bilder und wähle die stärksten unterschiedlichen Momente. Plane Geschichte und Musik und erstelle eine neue bearbeitbare Version mit Vorschau. Comedy nur passend zum gewählten Humorgrad. Prüfe den tatsächlichen Export und berichte ehrlich über Sicht- und Hörkontrollen. Private Medien bleiben lokal.
+> Lies zuerst SETUP.md und AGENTS.md. Prüfe mein vorhandenes Setup. Frage mich zuerst, ob alle oder ausgewählte Skills übernommen werden sollen, und welche passenden MCPs ich zusätzlich installieren/verbinden möchte. Übernimm bekannte Antworten, führe die gewählte Einrichtung aus und prüfe sie. Danach lies START_HERE.md und kläre fehlende Filmwünsche. Meine Medien liegen in [lokaler Ordner], mein Ziel ist [Film/Reel]. Erstelle eine neue bearbeitbare Version mit Vorschau. Private Medien bleiben lokal.
 
 Ein Chat ohne Dateizugriff kann daraus einen Schnittplan erstellen; zum Bauen braucht das LLM eine lokale Arbeitsumgebung oder einen passenden Editor. Ein GitHub-Link allein gibt ihm keinen Zugriff auf deine Fotos.
 
 ## Skills für Codex und Claude
 
-**Neun eigenständig nutzbare Skills** sind fertig eingerichtet: Filmschnitt, Erstbriefing, Beatcut, Bildauswahl, Hochformat/Blur, Comedy, Tonmischung, Chronologie und Exportkontrolle. Codex findet die Projektkopien unter `.agents/skills/`, Claude Code unter `.claude/skills/`. Öffne das geklonte Repo als Arbeitsprojekt. Einstieg in Codex CLI/IDE: `$video-editing`; in Claude Code: `/video-editing`. [Installationsdetails und offizielle Quellen](docs/skills.md).
+**Zehn eigenständig nutzbare Skills:** Einrichtung, Filmschnitt, Filmbriefing, Beatcut, Bildauswahl, Hochformat/Blur, Comedy, Tonmischung, Chronologie und Exportkontrolle. Codex findet die Projektkopien unter `.agents/skills/`, Claude Code unter `.claude/skills/`. Öffne das geklonte Repo als Arbeitsprojekt. Erster Einstieg in Codex CLI/IDE: `$video-setup`; in Claude Code: `/video-setup`. Für den anschließenden Schnitt: `video-editing`. [Installationsdetails und offizielle Quellen](docs/skills.md).
 
 Für Claude mit Skill-Upload gibt es [einzelne ZIP-Pakete](dist/skills/). Für ein anderes lokales Projekt:
 
@@ -22,7 +30,7 @@ Für Claude mit Skill-Upload gibt es [einzelne ZIP-Pakete](dist/skills/). Für e
 python3 tools/manage_skills.py install --target both --project /pfad/zum/videoprojekt
 ```
 
-Der Installer lässt abweichende vorhandene Skills stehen. Im ersten Austausch wählen Nutzer Stil und Humor; alternativ startet `python3 tools/brief.py local/project-v001/brief.json` den Terminal-Assistenten. Alle unbekannten Angaben bleiben sichtbar offen.
+Der Installer unterstützt `status`, `--dry-run` und einzelne `--skill`-Auswahlen; abweichende vorhandene Skills bleiben erhalten. MCPs werden getrennt ausgewählt und eingerichtet. **Nach dem Setup** kann `python3 tools/brief.py local/project-v001/brief.json` den Filmbriefing-Assistenten starten. Unbekannte Angaben bleiben sichtbar offen.
 
 ## Ausführbare Beispiele
 

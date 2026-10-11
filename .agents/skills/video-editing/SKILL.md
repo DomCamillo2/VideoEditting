@@ -9,6 +9,8 @@ This skill works on its own. Other `video-*` skills add depth if installed; the 
 
 ## Start with intent
 
+On first adoption of the toolkit, resolve setup before film preferences: ask all/selected/no additional skills, inventory current capabilities, then offer only useful MCP integrations and ask which to install. Use `video-setup` if available. A full repo clone already contains its project skill copies; do not pretend they are missing. Carry out the user's chosen setup and verify it, or proceed with existing tools if extras are declined. Skip this step when setup is established or the task is only an edit revision. Reading a skill does not authorize extra installation.
+
 Read the current brief, available media and last good project version first. For a new film with no tone specified, offer one compact choice before creative cutting:
 
 > Welche Richtung möchtest du: **seriös/cinematisch ohne Gags**, **emotional mit etwas Humor** oder **deutlich lustig mit verspielten Edits**? Länge und Format kannst du gleich dazusagen.

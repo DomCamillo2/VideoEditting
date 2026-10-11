@@ -1,0 +1,4 @@
+interface:
+  display_name: "Video-Setup"
+  short_description: "Zuerst Skills und passende MCPs auswählen"
+  default_prompt: "Nutze $video-setup, um zuerst die Skill-Auswahl und sinnvolle MCP-Installationen mit mir zu klären."

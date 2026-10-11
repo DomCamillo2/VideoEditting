@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "decisions_recorded": false,
+  "host": null,
+  "scope": "project",
+  "skill_choice": null,
+  "selected_skills": [],
+  "declined_skills": [],
+  "skill_status": {},
+  "integrations": [],
+  "verification_time": null,
+  "open_items": [],
+  "note": "Local preference/status record only; no credentials or authorization for unrelated future actions."
+}

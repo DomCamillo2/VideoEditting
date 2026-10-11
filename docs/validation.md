@@ -2,9 +2,9 @@
 
 Stand: 11.10.2026. Ergebnisse für den Toolkit-Starter, getrennt vom historischen Roadtrip.
 
-- 39 Python-Tests bestanden: die 24 vorhandenen Prüfungen für Metadaten, Timeline und Beatbericht sowie 15 neue Prüfungen für Stilwahl, Benutzer-Overrides, offene Angaben, Schreibschutz, Installer-Vorprüfung, Symlink-Abweisung, reproduzierbare ZIPs und den aus einem ZIP entpackten Briefing-Assistenten ohne Repository.
+- 45 Python-Tests bestanden: 24 Prüfungen für Metadaten, Timeline und Beatbericht sowie 21 Prüfungen für Stilwahl, Benutzer-Overrides, offene Angaben, Schreibschutz, Installer-Vorprüfung, Symlink-Abweisung, reproduzierbare ZIPs, Standalone-Briefing, selektive Installation, lesenden Status und Dry-Run ohne Schreibzugriffe.
 - Beispiel-Timeline ohne Fehler/Warnungen validiert; Beatreport-Smoke-Test bestanden.
-- Alle neun Skill-Frontmatter mit dem Skill-Creator-Validator geprüft. Interne Ressourcen sind ohne Repository verfügbar; Kopien für Codex/Claude und ZIPs stimmen mit ihren Quellen überein. Installation beider Host-Varianten in einem temporären Projekt und identische Wiederholungsinstallation getestet.
+- Alle zehn Skill-Frontmatter mit dem Skill-Creator-Validator geprüft. Interne Ressourcen sind ohne Repository verfügbar; Kopien für Codex/Claude und ZIPs stimmen mit ihren Quellen überein. Installation beider Host-Varianten in einem temporären Projekt und identische Wiederholungsinstallation getestet.
 - Remotion TypeScript/Lint und Bundle bestanden.
 - Frische separate Kopie ohne node_modules: npm ci, Lint und Bundle bestanden (Node 24 / macOS).
 - npm-Audit nach gezieltem typescript-eslint-Update: 0 bekannte Schwachstellen am Prüfdatum. Das ist keine Garantie für künftige Versionen.
@@ -19,6 +19,8 @@ Die Skill-Erweiterung ändert keine Film-/Demo-Komposition. Dafür wurden Python
 ## Grenzen
 
 Die Skills wurden strukturell validiert und anhand konkreter Verhaltensfälle redaktionell geprüft. Es wurde kein automatisierter Codex-/Claude-Modellvergleich und kein Import in ein Claude-Konto durchgeführt. Automatische Skill-Auswahl sowie gute kreative Entscheidungen hängen vom eingesetzten Modell und dessen Werkzeugen ab. Die Bildauswahl-Anleitung ist kein neu trainierter Unschärfe-/Ästhetik-Klassifikator.
+
+Die MCP-Auswahl und Beispiele stammen aus den verlinkten aktuellen Herstellerdokumentationen. Beim Erstellen dieses Onboardings wurde kein neuer MCP-Server installiert, kein Login durchgeführt und keine bestehende Host-Konfiguration verändert. Der Setup-Skill soll die künftige Nutzerwahl umsetzen; ein GitHub-Link allein erzwingt keinen Installationsdialog. `status` im Installer prüft nur Projekt-Skilldateien.
 
 ExifTool war auf dem Testrechner nicht installiert; seine Extraktion wurde nicht live getestet. Der Import gruppierter Metadaten, Auswahl von Aufnahmezeitpunkten, Hashing und Konfliktbehandlung sind mit lokalen Fixtures geprüft. Die CLI benennt die fehlende Abhängigkeit ausdrücklich.
 

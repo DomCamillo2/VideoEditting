@@ -2,6 +2,7 @@
 """Sync repo skill copies/ZIPs or install into an explicit project, without dependencies."""
 import argparse
 import io
+import json
 from pathlib import Path
 import re
 import sys
@@ -46,6 +47,47 @@ def sources(root=ROOT):
     return result
 
 
+def selected_sources(root=ROOT, selected=None):
+    available = sources(root)
+    if selected is None:
+        return available
+    if not selected:
+        raise ValueError("Empty skill selection; skip installation instead")
+    unknown = set(selected) - set(available)
+    if unknown:
+        raise ValueError("Unknown skills: " + ", ".join(sorted(unknown)))
+    return {name: files for name, files in available.items() if name in selected}
+
+
+def validate_targets(targets):
+    if not targets or set(targets) - set(TARGETS):
+        raise ValueError("Choose codex, claude or both")
+
+
+def status(project, targets, root=ROOT, selected=None):
+    """Report project-file presence, not host activation or global/MCP state."""
+    validate_targets(targets)
+    project = Path(project).resolve()
+    if not project.is_dir():
+        raise ValueError("Project must be an existing directory")
+    source = selected_sources(root, selected)
+    result = {}
+    for target in targets:
+        result[target] = {}
+        for name, files in source.items():
+            destination = project / TARGETS[target] / name
+            try:
+                safe_destination(destination, project)
+                if not destination.exists():
+                    state = "missing"
+                else:
+                    state = "identical" if tree_bytes(destination) == files else "different"
+            except (ValueError, OSError):
+                state = "unreadable_or_unsupported"
+            result[target][name] = state
+    return result
+
+
 def zip_bytes(name, files):
     output = io.BytesIO()
     with zipfile.ZipFile(output, "w", compression=zipfile.ZIP_DEFLATED) as archive:
@@ -82,11 +124,12 @@ def expected_outputs(source, project, targets, packages=False):
     return result
 
 
-def install(project, targets, root=ROOT):
+def install(project, targets, root=ROOT, selected=None, dry_run=False):
+    validate_targets(targets)
     project = Path(project).resolve()
     if not project.is_dir():
         raise ValueError("Project must be an existing directory")
-    source = sources(root)
+    source = selected_sources(root, selected)
     output = expected_outputs(source, project, targets)
     # Preflight every skill before creating anything. Exact copies are idempotent.
     for path in output:
@@ -96,6 +139,8 @@ def install(project, targets, root=ROOT):
             destination = project / TARGETS[target] / name
             if destination.exists() and tree_bytes(destination) != files:
                 raise ValueError(f"Existing skill differs; preserve/move it before installing: {destination}")
+    if dry_run:
+        return len(source)
     for path, data in output.items():
         if not path.exists():
             path.parent.mkdir(parents=True, exist_ok=True)
@@ -141,6 +186,12 @@ def main(argv=None):
     install_parser = sub.add_parser("install", help="Copy to an existing project; refuse divergent skills")
     install_parser.add_argument("--project", type=Path, required=True)
     install_parser.add_argument("--target", choices=["codex", "claude", "both"], default="both")
+    install_parser.add_argument("--skill", action="append", help="Install only this skill; repeat for a subset")
+    install_parser.add_argument("--dry-run", action="store_true", help="Preflight selected copies without writing")
+    status_parser = sub.add_parser("status", help="Inspect project skill files without modifying anything")
+    status_parser.add_argument("--project", type=Path, required=True)
+    status_parser.add_argument("--target", choices=["codex", "claude", "both"], default="both")
+    status_parser.add_argument("--skill", action="append")
     args = parser.parse_args(argv)
     try:
         if args.command == "sync":
@@ -148,8 +199,12 @@ def main(argv=None):
             print(f"{count} skills: copies and ZIPs {'verified' if args.check else 'synchronized'}")
         else:
             targets = list(TARGETS) if args.target == "both" else [args.target]
-            count = install(args.project, targets)
-            print(f"{count} skills installed into {args.project} for {', '.join(targets)}")
+            if args.command == "status":
+                print(json.dumps(status(args.project, targets, selected=args.skill), indent=2))
+            else:
+                count = install(args.project, targets, selected=args.skill, dry_run=args.dry_run)
+                action = "would be installed/retained" if args.dry_run else "installed/retained"
+                print(f"{count} skills {action} in {args.project} for {', '.join(targets)}")
         return 0
     except (ValueError, OSError) as exc:
         print(str(exc), file=sys.stderr)

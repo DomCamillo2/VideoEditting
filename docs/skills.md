@@ -1,9 +1,10 @@
 # Skills verwenden und weitergeben
 
-Die neun Skills sind eigenständige Ordner mit `SKILL.md`. Sie benötigen zum Verstehen weder das übrige Repo noch einen bestimmten Editor. Zum tatsächlichen Schneiden braucht das ausführende LLM weiterhin Zugriff auf Medien und geeignete Werkzeuge. Die Anweisungen sind auf Englisch portabel formuliert; Nutzeransprache folgt der Sprache des Nutzers.
+Die zehn Skills sind eigenständige Ordner mit `SKILL.md`. Der erste Einstieg ist **[SETUP.md](../SETUP.md)**: zuerst Skill-Auswahl und passende MCPs samt gewünschter Installation, danach Filmfragen. Die Skills benötigen zum Verstehen weder das übrige Repo noch einen bestimmten Editor. Zum Schneiden braucht das LLM Zugriff auf Medien und geeignete Werkzeuge. Die Anweisungen sind auf Englisch portabel formuliert; Nutzeransprache folgt der Sprache des Nutzers.
 
 | Skill | Zuständigkeit | Paket für Claude-Upload |
 |---|---|---|
+| [video-setup](../skills/video-setup/SKILL.md) | Erste Einrichtung: Skills wählen, MCPs prüfen und freigegebene Einrichtung ausführen | [ZIP](../dist/skills/video-setup.zip) |
 | [video-editing](../skills/video-editing/SKILL.md) | Geschichte, Rohschnitt, Pacing und Koordination | [ZIP](../dist/skills/video-editing.zip) |
 | [video-brief](../skills/video-brief/SKILL.md) | Erste Stilwahl, Humorgrad, Format, Wünsche | [ZIP](../dist/skills/video-brief.zip) |
 | [video-beatcut](../skills/video-beatcut/SKILL.md) | Hörbare Akzente, Songphasen, Framegrenzen, Drift | [ZIP](../dist/skills/video-beatcut.zip) |
@@ -18,13 +19,13 @@ Die neun Skills sind eigenständige Ordner mit `SKILL.md`. Sie benötigen zum Ve
 
 Öffne **VideoEditting selbst** als Arbeitsprojekt. Die generierten Ordner `.agents/skills/` für Codex und `.claude/skills/` für Claude Code sind schon eingecheckt. Das Repo lediglich im Browser zu öffnen aktiviert keine lokalen Skills.
 
-Codex entdeckt projektbezogene Skills unter `.agents/skills`. In CLI/IDE lassen sie sich über `/skills` bzw. `$video-editing` auswählen. Wenn eine Änderung nicht erscheint, Codex neu starten. [Offizielle OpenAI-Dokumentation](https://learn.chatgpt.com/docs/build-skills).
+Codex entdeckt projektbezogene Skills unter `.agents/skills`. In CLI/IDE lassen sie sich über `/skills` bzw. `$video-setup` auswählen; für den Schnitt anschließend `$video-editing`. Wenn eine Änderung nicht erscheint, Codex neu starten. [Offizielle OpenAI-Dokumentation](https://learn.chatgpt.com/docs/build-skills).
 
-Claude Code verwendet `.claude/skills` im Projekt und bietet den Aufruf `/video-editing` bzw. `/video-beatcut`. Automatische Auswahl hängt von Beschreibung, Aufgabe und Host-Einstellungen ab; sie ist keine Garantie. [Offizielle Claude-Code-Dokumentation](https://code.claude.com/docs/en/skills).
+Claude Code verwendet `.claude/skills` im Projekt und bietet `/video-setup`, danach `/video-editing` bzw. `/video-beatcut`. Automatische Auswahl hängt von Beschreibung, Aufgabe und Host-Einstellungen ab; sie ist keine Garantie. [Offizielle Claude-Code-Dokumentation](https://code.claude.com/docs/en/skills).
 
 Beispielauftrag:
 
-> Schneide meine lokalen Medien zu einem Film. Lass mich zuerst die Richtung wählen, falls sie noch offen ist. Wähle die stärksten unterschiedlichen Aufnahmen, schneide gezielt auf die Musik und prüfe eine Vorschau. Nutze video-editing und die passenden Fachskills.
+> Nutze video-setup: Lass mich zuerst alle oder bestimmte Skills auswählen und prüfe, welche MCPs mein vorhandenes Setup sinnvoll ergänzen. Frage mich, welche davon eingerichtet werden sollen. Führe meine Auswahl aus. Danach klären wir die noch fehlenden Filmwünsche und schneiden eine Vorschau mit video-editing.
 
 ## In ein anderes Projekt kopieren
 
@@ -34,7 +35,15 @@ Python 3.9+ genügt. Der Zielordner muss bereits existieren:
 python3 tools/manage_skills.py install --target both --project /pfad/zum/projekt
 ```
 
-`--target codex` oder `--target claude` installiert nur eine Variante. Kopiert werden alle neun Skillordner samt internen Ressourcen; keine Musik, Fotos, geheimen Konfigurationen oder Abhängigkeiten. Identische Installationen sind wiederholbar. Bei einem abweichenden vorhandenen Skill bricht die Vorprüfung ab, bevor neue Skills geschrieben werden. Bestehenden Skill bewusst sichern/verschieben oder zuerst vergleichen. Symlink-Ziele werden abgewiesen. Globale Agent-Einstellungen bleiben unverändert.
+`--target codex` oder `--target claude` installiert nur eine Variante. Ohne `--skill` werden alle zehn Skillordner samt internen Ressourcen kopiert. Mit wiederholtem `--skill` lässt sich eine Auswahl treffen. Beispiel:
+
+```sh
+python3 tools/manage_skills.py install --target codex --project /pfad/zum/projekt --skill video-editing --skill video-beatcut --dry-run
+```
+
+Ohne `--dry-run` wird diese Auswahl geschrieben. `status --target both --project /pfad/zum/projekt` zeigt `missing`, `identical`, `different` oder `unreadable_or_unsupported`. Das prüft Projektdateien, nicht Host-Aktivierung, globale Skills oder MCP-Gesundheit. Bei `--dry-run` erfolgen keine Schreibzugriffe. Es werden keine Musik, Fotos, Zugangsdaten, MCP-Konfigurationen oder Pakete kopiert.
+
+Identische Installationen sind wiederholbar. Bei einem abweichenden ausgewählten Skill bricht die Vorprüfung ab, bevor neue Skills geschrieben werden. Nicht ausgewählte Skills bleiben unberührt, auch wenn sie abweichen. Bestehenden Skill bewusst sichern/verschieben oder zuerst vergleichen. Symlink-Ziele werden abgewiesen. Globale Agent-Einstellungen bleiben unverändert.
 
 ## Claude mit Skill-Upload
 
@@ -42,9 +51,9 @@ Ein gewünschtes ZIP aus der Tabelle herunterladen und in Claudes Skill-Verwaltu
 
 Der allgemeine `video-editing`-Skill funktioniert allein; für bessere Detailarbeit die passenden Spezialisten zusätzlich aktivieren. Lokale Claude-Code-Ordner und Claude-Konto-Skills sind unterschiedliche Einrichtungswege. Die Pakete wurden strukturell und ihre Skripte lokal geprüft; ein Import in dein Claude-Konto wurde hier nicht durchgeführt.
 
-## Die erste Auswahl
+## Filmstil nach dem Setup
 
-Neue Nutzer bekommen früh drei Richtungen: **seriös ohne Gags**, **emotional mit etwas Humor**, **deutlich lustig**. Freitext und Kombinationen bleiben möglich. Schon mitgeteilte Vorlieben werden übernommen. Eine kleine Änderung an einem vorhandenen Film startet keinen neuen Fragenkatalog.
+Nach Skill-/MCP-Entscheidungen bekommen neue Filmprojekte drei Richtungen: **seriös ohne Gags**, **emotional mit etwas Humor**, **deutlich lustig**. Freitext und Kombinationen bleiben möglich. Schon mitgeteilte Vorlieben werden übernommen. Eine kleine Änderung an einem vorhandenen Film startet keinen neuen Fragenkatalog. Das bewusste Ablehnen zusätzlicher Installationen führt ebenfalls zum Filmbriefing.
 
 Optionaler Terminal-Assistent:
 

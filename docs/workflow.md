@@ -1,5 +1,7 @@
 # Vom Material zum Film
 
+Bei erstmaliger Übernahme des Toolkits zuerst [SETUP.md](../SETUP.md): Skills auswählen, vorhandene Werkzeuge prüfen und gewünschte MCPs einrichten. Erst danach beginnt dieser Filmablauf. Bereits beantwortete Setup-/Briefingfragen werden übernommen; Zusatzinstallationen können abgelehnt werden.
+
 ## Erst die Absicht, dann die Effekte
 
 Für einen Freundschaftsfilm zählen gemeinsame Erlebnisse, kleine Reaktionen und ein fühlbarer Reisebogen. Ein brauchbarer Aufbau: kurzer Auftakt → Aufbruch → wechselnde Erlebnisse → ruhiger Höhepunkt → gemeinsamer Abschluss. 5–8 Sekunden Intro und 2–5 Sekunden Karten waren geeignete Roadtrip-Werte. Bei einem 20-Sekunden-Reel wären sie viel zu lang.

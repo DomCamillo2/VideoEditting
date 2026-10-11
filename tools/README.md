@@ -2,9 +2,13 @@
 
 Python 3.9+; die Kernlogik nutzt nur die Standardbibliothek. Für benannte Zeitzonen muss eine IANA-Zeitzonendatenbank verfügbar sein (auf Windows gegebenenfalls das Python-Paket `tzdata` installieren). `catalog` braucht ExifTool oder dessen JSON-Ausgabe. `qa` braucht FFmpeg/ffprobe. Die Werkzeuge ändern keine Medien und verweigern vorhandene Ausgabedateien. Neue Version oder neuen Dateinamen wählen.
 
-## Inventur
+## Einrichtung vor dem Filmbriefing
+
+Beim erstmaligen Einbinden mit [SETUP.md](../SETUP.md) anfangen: Skill-Auswahl und passende MCPs stehen vor Stilfragen. `python3 tools/manage_skills.py status --target both --project /pfad/zum/projekt` prüft nur lokale Projekt-Skilldateien. `install --dry-run` prüft geplante Kopien ohne Schreiben; wiederholte `--skill NAME` wählen einzelne Skills. Der Installer richtet selbst keine MCPs ein; der Setup-Skill führt die gewählte Konfiguration über den jeweiligen Host aus.
 
 Vor dem Schnitt kann `python3 tools/brief.py local/project-v001/brief.json` Stil, Humorgrad und Format abfragen. Mit `--non-interactive --style serious` lassen sich bekannte Angaben ohne Dialog speichern. Weitere Flags: `--humor`, `--format`, `--duration`, `--media`, `--music`, `--pacing`, `--must-keep`, `--avoid`, `--original-sound`. Details und Skill-Installer: [Skills](../docs/skills.md). Der Assistent rendert nichts und lässt unbekannte Werte offen.
+
+## Inventur
 
 ```sh
 python3 tools/editing.py catalog /pfad/zu/medien local/project-v001/catalog.json --zone Europe/Berlin

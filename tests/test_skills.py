@@ -97,7 +97,7 @@ class BriefTests(unittest.TestCase):
 class PackageTests(unittest.TestCase):
     def test_skill_packages_have_only_internal_file_links(self):
         source = manager.sources()
-        self.assertEqual(len(source), 9)
+        self.assertEqual(len(source), 10)
         for name, files in source.items():
             text = files["SKILL.md"].decode()
             for target in re.findall(r"\[[^\]]*\]\(([^)]+)\)", text):
@@ -118,8 +118,8 @@ class PackageTests(unittest.TestCase):
     def test_installer_copies_both_hosts_and_is_repeatable(self):
         with tempfile.TemporaryDirectory() as tmp:
             target = Path(tmp)
-            self.assertEqual(manager.install(target, ["codex", "claude"]), 9)
-            self.assertEqual(manager.install(target, ["codex", "claude"]), 9)
+            self.assertEqual(manager.install(target, ["codex", "claude"]), 10)
+            self.assertEqual(manager.install(target, ["codex", "claude"]), 10)
             for host in manager.TARGETS.values():
                 for name, files in manager.sources().items():
                     self.assertEqual(manager.tree_bytes(target / host / name), files)
@@ -172,6 +172,63 @@ class PackageTests(unittest.TestCase):
             result = subprocess.run([sys.executable, str(script), str(output), "--style", "emotional", "--non-interactive"], cwd=root, capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertEqual(json.loads(output.read_text())["humor"], "light")
+
+    def test_install_subset_leaves_unselected_conflict(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            target = Path(tmp)
+            existing = target / ".agents/skills/video-comedy/SKILL.md"
+            existing.parent.mkdir(parents=True)
+            existing.write_text("custom comedy")
+            count = manager.install(target, ["codex"], selected=["video-beatcut"])
+            self.assertEqual(count, 1)
+            self.assertEqual(existing.read_text(), "custom comedy")
+            self.assertTrue((target / ".agents/skills/video-beatcut/SKILL.md").is_file())
+            self.assertFalse((target / ".agents/skills/video-editing").exists())
+            self.assertFalse((target / ".claude").exists())
+
+    def test_unknown_selection_writes_nothing(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            target = Path(tmp)
+            with self.assertRaisesRegex(ValueError, "Unknown skills"):
+                manager.install(target, ["codex"], selected=["video-missing"])
+            self.assertEqual(list(target.iterdir()), [])
+
+    def test_dry_run_never_writes(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            target = Path(tmp)
+            self.assertEqual(manager.install(target, ["codex"], selected=["video-setup"], dry_run=True), 1)
+            self.assertEqual(list(target.iterdir()), [])
+
+    def test_status_is_read_only_and_distinguishes_states(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            target = Path(tmp)
+            initial = manager.status(target, ["codex"])
+            self.assertEqual(set(initial["codex"].values()), {"missing"})
+            self.assertEqual(list(target.iterdir()), [])
+            manager.install(target, ["codex"], selected=["video-beatcut"])
+            installed = manager.status(target, ["codex"])
+            self.assertEqual(installed["codex"]["video-beatcut"], "identical")
+            path = target / ".agents/skills/video-beatcut/SKILL.md"
+            path.write_text("modified")
+            self.assertEqual(manager.status(target, ["codex"])["codex"]["video-beatcut"], "different")
+            self.assertEqual(path.read_text(), "modified")
+
+    def test_dry_run_still_detects_conflicts(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            target = Path(tmp)
+            conflict = target / ".agents/skills/video-editing/SKILL.md"
+            conflict.parent.mkdir(parents=True)
+            conflict.write_text("existing")
+            with self.assertRaisesRegex(ValueError, "Existing skill differs"):
+                manager.install(target, ["codex"], dry_run=True)
+            self.assertEqual(conflict.read_text(), "existing")
+
+    def test_invalid_target_or_empty_selection_is_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            with self.assertRaises(ValueError):
+                manager.install(tmp, ["unknown"])
+            with self.assertRaises(ValueError):
+                manager.install(tmp, ["codex"], selected=[])
 
 
 if __name__ == "__main__":

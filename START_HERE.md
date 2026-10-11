@@ -1,5 +1,7 @@
 # Einstieg für Mensch und LLM
 
+**Zum ersten Mal dieses Repo eingebunden? Zuerst [SETUP.md](SETUP.md) lesen.** Die ersten Fragen betreffen alle/ausgewählte Skills und passende MCPs samt Installation. Der folgende Filmablauf beginnt erst nach diesen Entscheidungen. Bereits beantwortetes Setup, bekannte Stilwünsche und laufende Projekte werden übernommen; keine Wiederholung bei jedem Start.
+
 1. Lies das aktuelle Briefing und `AGENTS.md`. Bei einem neuen Film ohne Stilvorgabe beginne mit: **„Seriös/cinematisch ohne Gags, emotional mit etwas Humor oder deutlich lustig mit verspielten Edits? Länge und Format kannst du gleich dazusagen.“** Freitext und Kombinationen zulassen; Humor und Schnitttempo getrennt behandeln. Bekannte Antworten übernehmen, bei kleinen Revisionen nicht neu fragen. Fehlende Medienpfade/Musik anschließend knapp klären. Erkunde vorhandene Projekte, damit eine neue Version keinen brauchbaren Schnitt ersetzt. [Briefing-Skill und Installation](docs/skills.md).
 2. Wähle einen Modus: Roadtrip (Chronologie + Etappen), Recap (Ereignisse + musikalischer Bogen), Reel (Hook + Entwicklung + Pointe). Der historische Roadtrip war 5–7 Minuten, 16:9, viel Humor; das ist keine Vorgabe für neue Filme. `python3 tools/brief.py local/project-v001/brief.json` bietet optional einen kurzen Auswahl-Assistenten.
 3. Führe Inventur und Metadatenprüfung durch. Lies `docs/metadata-routes.md`. Speichere Rohwerte, angewandte Zeitzonen und Konflikte. Unbekannt bleibt unbekannt.

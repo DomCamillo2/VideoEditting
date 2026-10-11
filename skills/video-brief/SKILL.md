@@ -7,6 +7,8 @@ description: Establish the style and practical brief before a new film or reel, 
 
 Read current user instructions and any saved brief. Reuse known answers. Do not import a previous user's roadtrip duration, format or comedy preference.
 
+This is the **film** brief, after toolkit setup. If the user is adopting the toolkit for the first time, first resolve all/selected/no additional skills and any useful MCP installations (`video-setup` if available). Do not repeat that setup when already decided, when the user directly requests this style discussion, or for an established project revision.
+
 ## First exchange
 
 In the user's language, offer three directions in one short question:
