@@ -1,0 +1,5 @@
+interface:
+  display_name: "Stil und Briefing"
+  short_description: "Zuerst Stimmung, Humor und Format festlegen"
+  default_prompt: "Nutze $video-brief, um mit mir Stil, Humorgrad und Ausgabeformat für einen neuen Film festzulegen."
+  brand_color: "#2563EB"

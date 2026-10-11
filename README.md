@@ -8,9 +8,21 @@ Ein deutschsprachiger Werkzeugkasten für LLM-gestützte Roadtrip-Filme, Freunds
 
 Repo klonen oder ZIP herunterladen und zusammen mit den eigenen Medien lokal öffnen. Diesen Auftrag einsetzen:
 
-> Lies START_HERE.md und AGENTS.md. Nutze dieses Repository als Arbeitsgrundlage. Meine Medien liegen in [lokaler Ordner], mein Ziel ist [Film/Reel, Länge, Format, Stimmung]. Prüfe den vorhandenen Projektstand, sammle Aufnahmezeiten mit Herkunft und Unsicherheiten, plane Geschichte und Musik und erstelle eine neue bearbeitbare Version mit Vorschau. Nutze passende Comedy-Rezepte. Prüfe Änderungen am tatsächlichen Export. Berichte ehrlich, welche Sicht- und Hörkontrollen erfolgt sind. Private Medien bleiben lokal. Beachte meine aktuellen Wünsche vor den Beispielvorgaben dieses Repos.
+> Lies START_HERE.md und AGENTS.md. Nutze dieses Repository als Arbeitsgrundlage. Meine Medien liegen in [lokaler Ordner], mein Ziel ist [Film/Reel, Länge, Format]. Falls noch offen, lass mich zuerst zwischen seriös ohne Gags, emotional mit etwas Humor und deutlich lustig wählen. Übernimm bereits genannte Wünsche. Prüfe den Projektstand und Aufnahmezeiten, vergleiche ähnliche Bilder und wähle die stärksten unterschiedlichen Momente. Plane Geschichte und Musik und erstelle eine neue bearbeitbare Version mit Vorschau. Comedy nur passend zum gewählten Humorgrad. Prüfe den tatsächlichen Export und berichte ehrlich über Sicht- und Hörkontrollen. Private Medien bleiben lokal.
 
 Ein Chat ohne Dateizugriff kann daraus einen Schnittplan erstellen; zum Bauen braucht das LLM eine lokale Arbeitsumgebung oder einen passenden Editor. Ein GitHub-Link allein gibt ihm keinen Zugriff auf deine Fotos.
+
+## Skills für Codex und Claude
+
+**Neun eigenständig nutzbare Skills** sind fertig eingerichtet: Filmschnitt, Erstbriefing, Beatcut, Bildauswahl, Hochformat/Blur, Comedy, Tonmischung, Chronologie und Exportkontrolle. Codex findet die Projektkopien unter `.agents/skills/`, Claude Code unter `.claude/skills/`. Öffne das geklonte Repo als Arbeitsprojekt. Einstieg in Codex CLI/IDE: `$video-editing`; in Claude Code: `/video-editing`. [Installationsdetails und offizielle Quellen](docs/skills.md).
+
+Für Claude mit Skill-Upload gibt es [einzelne ZIP-Pakete](dist/skills/). Für ein anderes lokales Projekt:
+
+```sh
+python3 tools/manage_skills.py install --target both --project /pfad/zum/videoprojekt
+```
+
+Der Installer lässt abweichende vorhandene Skills stehen. Im ersten Austausch wählen Nutzer Stil und Humor; alternativ startet `python3 tools/brief.py local/project-v001/brief.json` den Terminal-Assistenten. Alle unbekannten Angaben bleiben sichtbar offen.
 
 ## Ausführbare Beispiele
 
@@ -38,6 +50,8 @@ npm run dev -- --no-open
 | Ziel | Einstieg |
 |---|---|
 | Neuer Film oder bestehender Schnitt | [Workflow](docs/workflow.md), [Briefing](templates/brief.md) |
+| Codex-/Claude-Skills installieren | [Skills und Stilwahl](docs/skills.md) |
+| Gute Bilder statt fünf ähnlicher | [Medienauswahl](docs/media-selection.md), [Auswahl-Skill](skills/video-select-media/SKILL.md) |
 | Chronologie und unsichere Route | [Metadaten und Karten](docs/metadata-routes.md) |
 | Musik, Beats, Originalton | [Musik und Beatcut](docs/music-beats.md) |
 | Mehr lustige Dinge | [Comedy-Kochbuch](docs/comedy.md), [ausführbarer Baukasten](studio/README.md) |
@@ -45,6 +59,7 @@ npm run dev -- --no-open
 | Hochformat und Reels | [Framing](docs/framing.md), [Reels](docs/reels.md) |
 | Vorschau und fertiger Export | [QA und Rendering](docs/qa-render.md), [Werkzeuge](tools/README.md) |
 | Erfahrungen und bekannte Fehler | [Fallstudien](docs/learnings.md), [Provenienz](docs/provenance.md) |
+| Weitere wichtige Schnittentscheidungen | [Recherche: Auswahl, Ton und Qualität](docs/editing-research.md) |
 | An anderes LLM übergeben | [Handoff](templates/handoff.md), [Agent-Skill](skills/video-editing/SKILL.md) |
 | Songs lokal nutzen | [Musikverzeichnis](music/README.md) |
 

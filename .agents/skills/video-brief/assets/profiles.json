@@ -1,0 +1,17 @@
+{
+  "serious": {
+    "label": "Seriös / cinematisch",
+    "humor": "none",
+    "direction": "Klare Geschichte, bewusste Übergänge, keine eingefügten Gags."
+  },
+  "emotional": {
+    "label": "Emotional mit etwas Humor",
+    "humor": "light",
+    "direction": "Gemeinsame Momente und Atmosphäre, gelegentlich passende Pointen."
+  },
+  "funny": {
+    "label": "Deutlich lustig",
+    "humor": "high",
+    "direction": "Mehr abwechslungsreiche Gags mit lesbaren Pausen und emotionalen Ruhepunkten."
+  }
+}

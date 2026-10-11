@@ -2,9 +2,9 @@
 
 Stand: 11.10.2026. Ergebnisse für den Toolkit-Starter, getrennt vom historischen Roadtrip.
 
-- 24 Python-Tests bestanden: Offsets, DST-Fälle, Konflikte, Duplikate, Pfade, Framequantisierung, Basis-Timeline, Recap-Ausnahme und Schreibschutz.
+- 39 Python-Tests bestanden: die 24 vorhandenen Prüfungen für Metadaten, Timeline und Beatbericht sowie 15 neue Prüfungen für Stilwahl, Benutzer-Overrides, offene Angaben, Schreibschutz, Installer-Vorprüfung, Symlink-Abweisung, reproduzierbare ZIPs und den aus einem ZIP entpackten Briefing-Assistenten ohne Repository.
 - Beispiel-Timeline ohne Fehler/Warnungen validiert; Beatreport-Smoke-Test bestanden.
-- Skill-Frontmatter mit dem Skill-Creator-Validator geprüft.
+- Alle neun Skill-Frontmatter mit dem Skill-Creator-Validator geprüft. Interne Ressourcen sind ohne Repository verfügbar; Kopien für Codex/Claude und ZIPs stimmen mit ihren Quellen überein. Installation beider Host-Varianten in einem temporären Projekt und identische Wiederholungsinstallation getestet.
 - Remotion TypeScript/Lint und Bundle bestanden.
 - Frische separate Kopie ohne node_modules: npm ci, Lint und Bundle bestanden (Node 24 / macOS).
 - npm-Audit nach gezieltem typescript-eslint-Update: 0 bekannte Schwachstellen am Prüfdatum. Das ist keine Garantie für künftige Versionen.
@@ -12,9 +12,13 @@ Stand: 11.10.2026. Ergebnisse für den Toolkit-Starter, getrennt vom historische
 - Neun repräsentative Frames des finalen Encodes visuell kontrolliert. Zusätzliche Bewegungsphasen und Grenzen des ersten Testencodes geprüft; drei Kontaktbögen des finalen Encodes liegen unter [assets](assets/). Bewusstes Verlassen der Leinwand bei Rakete/Davonlaufen ist Teil des Effekts.
 - Die tatsächliche Demo misst −32,88 LUFS / −18,13 dBTP; sie ist eine leise synthetische Timing-Demonstration, kein fertig gemasterter Musikfilm.
 - Musikdateien vor der Veröffentlichung gegen die drei im Manifest gespeicherten SHA-256-Hashes geprüft.
-- Lokale Markdown-Verweise und öffentliche Pfad-Hygiene geprüft. GitHub Actions führt Tests, Timeline-Prüfung, Linkprüfung, Lint und Build bei Push/PR aus.
+- Lokale Markdown-Verweise und öffentliche Pfad-Hygiene geprüft. GitHub Actions führt Tests, Timeline-Prüfung, Linkprüfung, Skill-Paketprüfung, Lint und Build bei Push/PR aus.
+
+Die Skill-Erweiterung ändert keine Film-/Demo-Komposition. Dafür wurden Python-Prüfungen, Paketprüfung, TypeScript/Lint und Bundle ausgeführt; die oben dokumentierten Render-/Messwerte gehören weiterhin zur unveränderten Demo. [Verhaltensfälle und Grenzen der Skill-Prüfung](skill-evaluation.md).
 
 ## Grenzen
+
+Die Skills wurden strukturell validiert und anhand konkreter Verhaltensfälle redaktionell geprüft. Es wurde kein automatisierter Codex-/Claude-Modellvergleich und kein Import in ein Claude-Konto durchgeführt. Automatische Skill-Auswahl sowie gute kreative Entscheidungen hängen vom eingesetzten Modell und dessen Werkzeugen ab. Die Bildauswahl-Anleitung ist kein neu trainierter Unschärfe-/Ästhetik-Klassifikator.
 
 ExifTool war auf dem Testrechner nicht installiert; seine Extraktion wurde nicht live getestet. Der Import gruppierter Metadaten, Auswahl von Aufnahmezeitpunkten, Hashing und Konfliktbehandlung sind mit lokalen Fixtures geprüft. Die CLI benennt die fehlende Abhängigkeit ausdrücklich.
 

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Musik und Originalton"
+  short_description: "Sprache, Musik und Soundeffekte verständlich mischen"
+  default_prompt: "Nutze $video-audio-mix, um Musik und ausgewählten Originalton sauber zu mischen."
+  brand_color: "#2563EB"

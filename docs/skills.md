@@ -1,0 +1,74 @@
+# Skills verwenden und weitergeben
+
+Die neun Skills sind eigenständige Ordner mit `SKILL.md`. Sie benötigen zum Verstehen weder das übrige Repo noch einen bestimmten Editor. Zum tatsächlichen Schneiden braucht das ausführende LLM weiterhin Zugriff auf Medien und geeignete Werkzeuge. Die Anweisungen sind auf Englisch portabel formuliert; Nutzeransprache folgt der Sprache des Nutzers.
+
+| Skill | Zuständigkeit | Paket für Claude-Upload |
+|---|---|---|
+| [video-editing](../skills/video-editing/SKILL.md) | Geschichte, Rohschnitt, Pacing und Koordination | [ZIP](../dist/skills/video-editing.zip) |
+| [video-brief](../skills/video-brief/SKILL.md) | Erste Stilwahl, Humorgrad, Format, Wünsche | [ZIP](../dist/skills/video-brief.zip) |
+| [video-beatcut](../skills/video-beatcut/SKILL.md) | Hörbare Akzente, Songphasen, Framegrenzen, Drift | [ZIP](../dist/skills/video-beatcut.zip) |
+| [video-select-media](../skills/video-select-media/SKILL.md) | Kontaktbögen, Motivschärfe, ähnliche Bilder, beste Momente | [ZIP](../dist/skills/video-select-media.zip) |
+| [video-portrait-framing](../skills/video-portrait-framing/SKILL.md) | Unscharfer Hintergrund, sichere Gesichter/Körper, kein Stretch | [ZIP](../dist/skills/video-portrait-framing.zip) |
+| [video-comedy](../skills/video-comedy/SKILL.md) | Freisteller, Spins, Ladebalken, Flammen, Gesichts-Zoom | [ZIP](../dist/skills/video-comedy.zip) |
+| [video-audio-mix](../skills/video-audio-mix/SKILL.md) | Originalton, Ducking, Soundeffekte, J-/L-Cuts | [ZIP](../dist/skills/video-audio-mix.zip) |
+| [video-chronology](../skills/video-chronology/SKILL.md) | Metadaten, Kapitel, belegte Routen und Unsicherheiten | [ZIP](../dist/skills/video-chronology.zip) |
+| [video-export-qa](../skills/video-export-qa/SKILL.md) | Vorschau, Farb-/Ton-/Bildkontrolle, tatsächlicher Export | [ZIP](../dist/skills/video-export-qa.zip) |
+
+## Direkt im geklonten Repository
+
+Öffne **VideoEditting selbst** als Arbeitsprojekt. Die generierten Ordner `.agents/skills/` für Codex und `.claude/skills/` für Claude Code sind schon eingecheckt. Das Repo lediglich im Browser zu öffnen aktiviert keine lokalen Skills.
+
+Codex entdeckt projektbezogene Skills unter `.agents/skills`. In CLI/IDE lassen sie sich über `/skills` bzw. `$video-editing` auswählen. Wenn eine Änderung nicht erscheint, Codex neu starten. [Offizielle OpenAI-Dokumentation](https://learn.chatgpt.com/docs/build-skills).
+
+Claude Code verwendet `.claude/skills` im Projekt und bietet den Aufruf `/video-editing` bzw. `/video-beatcut`. Automatische Auswahl hängt von Beschreibung, Aufgabe und Host-Einstellungen ab; sie ist keine Garantie. [Offizielle Claude-Code-Dokumentation](https://code.claude.com/docs/en/skills).
+
+Beispielauftrag:
+
+> Schneide meine lokalen Medien zu einem Film. Lass mich zuerst die Richtung wählen, falls sie noch offen ist. Wähle die stärksten unterschiedlichen Aufnahmen, schneide gezielt auf die Musik und prüfe eine Vorschau. Nutze video-editing und die passenden Fachskills.
+
+## In ein anderes Projekt kopieren
+
+Python 3.9+ genügt. Der Zielordner muss bereits existieren:
+
+```sh
+python3 tools/manage_skills.py install --target both --project /pfad/zum/projekt
+```
+
+`--target codex` oder `--target claude` installiert nur eine Variante. Kopiert werden alle neun Skillordner samt internen Ressourcen; keine Musik, Fotos, geheimen Konfigurationen oder Abhängigkeiten. Identische Installationen sind wiederholbar. Bei einem abweichenden vorhandenen Skill bricht die Vorprüfung ab, bevor neue Skills geschrieben werden. Bestehenden Skill bewusst sichern/verschieben oder zuerst vergleichen. Symlink-Ziele werden abgewiesen. Globale Agent-Einstellungen bleiben unverändert.
+
+## Claude mit Skill-Upload
+
+Ein gewünschtes ZIP aus der Tabelle herunterladen und in Claudes Skill-Verwaltung hochladen/aktivieren. Jedes ZIP enthält genau einen gleichnamigen Skillordner mit `SKILL.md` und seinen Ressourcen. In **Customize → Skills** aktivieren, dann mit einer passenden Aufgabe ausprobieren. Ein normaler Chat-Dateianhang ersetzt die Aktivierung nicht. Verfügbarkeit und Richtlinien des jeweiligen Kontos gelten. [Offizielle Anleitung für Custom Skills](https://support.claude.com/en/articles/12512198-how-to-create-custom-skills).
+
+Der allgemeine `video-editing`-Skill funktioniert allein; für bessere Detailarbeit die passenden Spezialisten zusätzlich aktivieren. Lokale Claude-Code-Ordner und Claude-Konto-Skills sind unterschiedliche Einrichtungswege. Die Pakete wurden strukturell und ihre Skripte lokal geprüft; ein Import in dein Claude-Konto wurde hier nicht durchgeführt.
+
+## Die erste Auswahl
+
+Neue Nutzer bekommen früh drei Richtungen: **seriös ohne Gags**, **emotional mit etwas Humor**, **deutlich lustig**. Freitext und Kombinationen bleiben möglich. Schon mitgeteilte Vorlieben werden übernommen. Eine kleine Änderung an einem vorhandenen Film startet keinen neuen Fragenkatalog.
+
+Optionaler Terminal-Assistent:
+
+```sh
+python3 tools/brief.py local/project-v001/brief.json
+```
+
+Er fragt Richtung, Humor, Format, Länge, Medien und Musik. Die Humorauswahl kann den Profilvorschlag ändern; Schnitttempo ist davon unabhängig. Nicht-interaktiv mit bekannten Antworten:
+
+```sh
+python3 tools/brief.py local/project-v002/brief.json --style serious --humor none --format 16:9 --duration "3 Minuten" --pacing schnell --non-interactive
+```
+
+Unbekannte Werte sind `null` und stehen in `unresolved`. Der Assistent analysiert keine Medien und rendert keinen Film. Er überschreibt keine vorhandene Datei. Eigene Stilbeschreibungen können im Chat bzw. im Briefing ergänzt werden.
+
+## Pflege
+
+Nur `skills/` ist die Quelle. Danach:
+
+```sh
+python3 tools/manage_skills.py sync
+python3 tools/manage_skills.py sync --check
+python3 -m unittest discover -s tests -v
+python3 tools/check_repo.py
+```
+
+`sync` ersetzt die generierten Kopien und ZIPs dieses Repos bewusst; deshalb dort keine eigenen Änderungen pflegen. Zusätzliche unerwartete Dateien innerhalb eines erzeugten Skillordners führen zum Abbruch. Andere Skillordner bleiben unberührt. ZIPs haben stabile Reihenfolge/Zeitstempel; gleiche Quellen ergeben gleiche Bytes. CI prüft die Übereinstimmung. Die Ordnerstruktur folgt den oben verlinkten offiziellen Dokumentationen; das ist kein veröffentlichtes Marketplace-Plugin.

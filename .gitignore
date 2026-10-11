@@ -21,5 +21,6 @@
 *.heic
 *.HEIC
 *.zip
+!dist/skills/*.zip
 !music/tracks/*.mp3
 !examples/effects-lab.mp4

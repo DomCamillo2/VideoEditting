@@ -6,8 +6,10 @@
 - Vorhandenes Projekt / letzte gute Version:
 - Gewünschte Länge und Seitenverhältnis:
 - Ausgabeauflösung / fps / SDR oder HDR:
-- Stimmung und 2–3 passende Referenzen:
-- Humor: wenig / mittel / viel; erwünschte und ausgeschlossene Gags:
+- Erste Stilwahl: seriös/cinematisch / emotional mit etwas Humor / deutlich lustig / eigene Kombination
+- Stimmung und optionale Referenzen:
+- Humor: keiner / etwas / viel; erwünschte und ausgeschlossene Gags:
+- Schnitttempo unabhängig vom Humor: ruhig / wechselnd / schnell / eigene Vorgabe
 - Musik (lokale Dateien, Reihenfolge, erlaubte Nutzung):
 - Originalton: stumm / ausgewählte Momente / Schwerpunkt:
 - Chronologie strikt? Rückblick erlaubt?

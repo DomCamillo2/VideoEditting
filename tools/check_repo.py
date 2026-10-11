@@ -10,7 +10,7 @@ errors=[]
 skip={'.git','node_modules','out','build','local','analysis','exports','__pycache__'}
 for path in root.rglob('*'):
     if set(path.relative_to(root).parts)&skip or not path.is_file():continue
-    if path.suffix not in {'.md','.py','.tsx','.ts','.json','.yml','.csv'}:continue
+    if path.suffix not in {'.md','.py','.tsx','.ts','.json','.yaml','.yml','.csv'}:continue
     text=path.read_text(encoding='utf-8')
     if path.name!='check_repo.py' and re.search(r'/Users/[^/\s]+/|/home/[^/\s]+/',text):
         errors.append(str(path.relative_to(root))+': absolute private user path')

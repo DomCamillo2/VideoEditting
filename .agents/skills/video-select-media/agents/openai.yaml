@@ -1,0 +1,5 @@
+interface:
+  display_name: "Bildauswahl"
+  short_description: "Scharfe, starke und unterschiedliche Momente wählen"
+  default_prompt: "Nutze $video-select-media, um ähnliche Aufnahmen zu vergleichen und die besten Momente auszuwählen."
+  brand_color: "#2563EB"

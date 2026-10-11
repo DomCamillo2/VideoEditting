@@ -1,0 +1,5 @@
+interface:
+  display_name: "Hochformat einpassen"
+  short_description: "Menschen schützen und den Hintergrund weichzeichnen"
+  default_prompt: "Nutze $video-portrait-framing für vollständige Personen vor einem weichgezeichneten Hintergrund."
+  brand_color: "#2563EB"

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Reise und Chronologie"
+  short_description: "Aufnahmezeiten, Kapitel und Routen nachvollziehen"
+  default_prompt: "Nutze $video-chronology, um Aufnahmefolge und Reiseabschnitte mit Unsicherheiten zu erfassen."
+  brand_color: "#2563EB"

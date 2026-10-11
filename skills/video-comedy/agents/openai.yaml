@@ -1,0 +1,5 @@
+interface:
+  display_name: "Lustige Edits"
+  short_description: "Freisteller, Flammen, Spins und Pointen gestalten"
+  default_prompt: "Nutze $video-comedy für abwechslungsreiche Gags passend zum vereinbarten Humorgrad."
+  brand_color: "#2563EB"

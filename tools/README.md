@@ -4,6 +4,8 @@ Python 3.9+; die Kernlogik nutzt nur die Standardbibliothek. Für benannte Zeitz
 
 ## Inventur
 
+Vor dem Schnitt kann `python3 tools/brief.py local/project-v001/brief.json` Stil, Humorgrad und Format abfragen. Mit `--non-interactive --style serious` lassen sich bekannte Angaben ohne Dialog speichern. Weitere Flags: `--humor`, `--format`, `--duration`, `--media`, `--music`, `--pacing`, `--must-keep`, `--avoid`, `--original-sound`. Details und Skill-Installer: [Skills](../docs/skills.md). Der Assistent rendert nichts und lässt unbekannte Werte offen.
+
 ```sh
 python3 tools/editing.py catalog /pfad/zu/medien local/project-v001/catalog.json --zone Europe/Berlin
 ```

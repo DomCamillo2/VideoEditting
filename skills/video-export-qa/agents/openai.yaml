@@ -1,0 +1,5 @@
+interface:
+  display_name: "Export kontrollieren"
+  short_description: "Vorschau, finalen Film und Übergabe gezielt prüfen"
+  default_prompt: "Nutze $video-export-qa, um den tatsächlichen Export und die wichtigsten Bild- und Tonstellen zu prüfen."
+  brand_color: "#2563EB"

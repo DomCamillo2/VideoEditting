@@ -1,0 +1,5 @@
+interface:
+  display_name: "Schnitt auf Beat"
+  short_description: "Musikalische Akzente treffen und Drift prüfen"
+  default_prompt: "Nutze $video-beatcut, um die wichtigsten Schnitte hörbar auf musikalische Akzente zu setzen."
+  brand_color: "#2563EB"

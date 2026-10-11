@@ -1,0 +1,5 @@
+interface:
+  display_name: "Filmschnitt"
+  short_description: "Geschichte, Schnitt und passende Fachskills"
+  default_prompt: "Nutze $video-editing, um aus meinen Medien einen Film im gewünschten Stil zu schneiden."
+  brand_color: "#2563EB"
