@@ -33,6 +33,6 @@ Free-text answers and combinations are valid. Tone, pace and gag quantity are se
 
 ## Deliver
 
-Keep a local versioned project containing a brief, media catalog, selection reasons, source in/out points, integer-frame timeline, music/effect manifest, preview, final file if requested and QA/handoff notes. A finished message must point to the actual export, distinguish preview from master and list material unresolved issues. Local editing does not itself authorize uploading private media.
+Keep a local versioned project containing a brief, media catalog, selection reasons, source in/out points, integer-frame timeline with separate source/timeline ranges and their frame rates, music/effect manifest, preview, final file if requested and QA/handoff notes. A finished message must point to the actual export, distinguish preview from master and list material unresolved issues. Local editing does not itself authorize uploading private media.
 
 Do not promise a perfect or viral result from a prompt, automated scores or a successful render alone.

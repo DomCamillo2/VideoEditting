@@ -19,6 +19,8 @@ jobs:
           cache-dependency-path: studio/package-lock.json
       - run: python3 -m unittest discover -s tests -v
       - run: python3 tools/editing.py validate examples/timeline.json
+      - run: python3 tools/editing.py validate examples/timeline-source.json
+      - run: python3 tools/editing.py cut-list examples/timeline-source.json "${{ runner.temp }}/cut-list.csv"
       - run: python3 tools/check_repo.py
       - run: python3 tools/manage_skills.py sync --check
       - run: npm ci

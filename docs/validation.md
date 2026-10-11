@@ -2,8 +2,8 @@
 
 Stand: 11.10.2026. Ergebnisse für den Toolkit-Starter, getrennt vom historischen Roadtrip.
 
-- 45 Python-Tests bestanden: 24 Prüfungen für Metadaten, Timeline und Beatbericht sowie 21 Prüfungen für Stilwahl, Benutzer-Overrides, offene Angaben, Schreibschutz, Installer-Vorprüfung, Symlink-Abweisung, reproduzierbare ZIPs, Standalone-Briefing, selektive Installation, lesenden Status und Dry-Run ohne Schreibzugriffe.
-- Beispiel-Timeline ohne Fehler/Warnungen validiert; Beatreport-Smoke-Test bestanden.
+- 69 Python-Tests bestanden: 24 zusätzliche Audit-Prüfungen für fehlerhafte Daten, rationale Framegrenzen, Quellbereiche/Tempo, fehlende Medien/Symlinks, CSV-Handoff, unveränderte Ausgaben sowie öffentliche Assets; außerdem 24 Prüfungen für Metadaten, Timeline und Beatbericht sowie 21 Prüfungen für Stilwahl, Benutzer-Overrides, offene Angaben, Schreibschutz, Installer-Vorprüfung, Symlink-Abweisung, reproduzierbare ZIPs, Standalone-Briefing, selektive Installation, lesenden Status und Dry-Run ohne Schreibzugriffe.
+- Beide Beispiel-Timelines ohne Fehler/Warnungen validiert; CLI-Smoke-Tests für CSV-Schnittliste und Beatreport bestanden. Quell-In/Out und Timeline-Grenzen im CSV kontrolliert.
 - Alle zehn Skill-Frontmatter mit dem Skill-Creator-Validator geprüft. Interne Ressourcen sind ohne Repository verfügbar; Kopien für Codex/Claude und ZIPs stimmen mit ihren Quellen überein. Installation beider Host-Varianten in einem temporären Projekt und identische Wiederholungsinstallation getestet.
 - Remotion TypeScript/Lint und Bundle bestanden.
 - Frische separate Kopie ohne node_modules: npm ci, Lint und Bundle bestanden (Node 24 / macOS).
@@ -12,9 +12,9 @@ Stand: 11.10.2026. Ergebnisse für den Toolkit-Starter, getrennt vom historische
 - Neun repräsentative Frames des finalen Encodes visuell kontrolliert. Zusätzliche Bewegungsphasen und Grenzen des ersten Testencodes geprüft; drei Kontaktbögen des finalen Encodes liegen unter [assets](assets/). Bewusstes Verlassen der Leinwand bei Rakete/Davonlaufen ist Teil des Effekts.
 - Die tatsächliche Demo misst −32,88 LUFS / −18,13 dBTP; sie ist eine leise synthetische Timing-Demonstration, kein fertig gemasterter Musikfilm.
 - Die drei zuvor hochgeladenen fremden Songs und ihr Manifest wurden wegen fehlender Weitergaberechte entfernt, einschließlich ihrer Dateien in der veröffentlichten Git-Historie. MP3-Dateien sind ohne Ausnahme von Git ausgeschlossen. Eigene synthetische Demo-Sounds bleiben enthalten.
-- Lokale Markdown-Verweise und öffentliche Pfad-Hygiene geprüft. GitHub Actions führt Tests, Timeline-Prüfung, Linkprüfung, Skill-Paketprüfung, Lint und Build bei Push/PR aus.
+- Lokale Markdown-Verweise, öffentliche Pfad-Hygiene und 13 eigene Demo-Assets gegen Herkunfts-/Hash-Verzeichnis geprüft. GitHub Actions führt Tests, Timeline-Prüfung, Linkprüfung, Skill-Paketprüfung, Lint und Build bei Push/PR aus.
 
-Die Skill-Erweiterung ändert keine Film-/Demo-Komposition. Dafür wurden Python-Prüfungen, Paketprüfung, TypeScript/Lint und Bundle ausgeführt; die oben dokumentierten Render-/Messwerte gehören weiterhin zur unveränderten Demo. [Verhaltensfälle und Grenzen der Skill-Prüfung](skill-evaluation.md).
+Das Repository-Audit und die Skill-Erweiterungen ändern keine Film-/Demo-Komposition. Nach dem Audit wurden 69 Python-Prüfungen, Link-/Asset-/Paketprüfung, die vier geänderten Skill-Frontmatter, TypeScript/Lint und Bundle erfolgreich geprüft; die oben dokumentierten Render-/Messwerte gehören weiterhin zur unveränderten Demo. [Verhaltensfälle und Grenzen der Skill-Prüfung](skill-evaluation.md).
 
 ## Grenzen
 
@@ -27,3 +27,5 @@ ExifTool war auf dem Testrechner nicht installiert; seine Extraktion wurde nicht
 Audio wurde technisch gemessen, nicht vom Modell manuell angehört. Die Demo-Sounds sind bewusst leise. Kein Beleg für automatisch richtigen Beatcut bei beliebigen Songs.
 
 Das Lint-Preset nutzt ESLint 9, das npm inzwischen als nicht mehr unterstützt markiert. Für die getestete Remotion-Version blieb diese kompatible Kombination gepinnt; ein späteres Upgrade gemeinsam mit dem Preset prüfen. Keine laufende öffentliche Web-App wird durch dieses Repo bereitgestellt.
+
+[Auditbefunde, Vergleich mit fünf Schnitt-Repositories und bekannte Grenzen](repository-audit.md). Die externen Vergleichswerkzeuge wurden recherchiert, nicht als Anwendungen getestet.

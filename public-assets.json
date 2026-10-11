@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "assets": [
+    {
+      "path": "docs/assets/effects-boundaries.jpg",
+      "sha256": "ba4f7ee3243390e926312b3b24a527cc1373a13b3b7044e119d6448b1aedb77e",
+      "license": "MIT",
+      "provenance": "EffectsLab demo or inspection frame made from the original toolkit SVGs and synthesized sounds."
+    },
+    {
+      "path": "docs/assets/effects-detail.jpg",
+      "sha256": "5c39eb67f3963f72478c9029af661261e4802b29d0b2565e763069937065437e",
+      "license": "MIT",
+      "provenance": "EffectsLab demo or inspection frame made from the original toolkit SVGs and synthesized sounds."
+    },
+    {
+      "path": "docs/assets/effects-overview.jpg",
+      "sha256": "c0f6f6b370f3deed8ceae0a754d56f09e3c5cf33c75b743f93fbfcd05be632d7",
+      "license": "MIT",
+      "provenance": "EffectsLab demo or inspection frame made from the original toolkit SVGs and synthesized sounds."
+    },
+    {
+      "path": "examples/effects-lab.mp4",
+      "sha256": "f247a809e7ea3fc334668f84bd71b78a8b194c9303f1fd4ead71a956ab5883b2",
+      "license": "MIT",
+      "provenance": "EffectsLab demo or inspection frame made from the original toolkit SVGs and synthesized sounds."
+    },
+    {
+      "path": "studio/public/demo/beat.wav",
+      "sha256": "7ab691be39e0cf04b68f317db2651f4e9d315509c94b25e2db6b2838eda13765",
+      "license": "MIT",
+      "provenance": "Synthesized by tools/synth_audio.py without third-party samples."
+    },
+    {
+      "path": "studio/public/demo/blip.wav",
+      "sha256": "4f371b5dfcb42fd8a8fab702aa71bfc1892d25487e25c4b754b46a4d09dcb4e0",
+      "license": "MIT",
+      "provenance": "Synthesized by tools/synth_audio.py without third-party samples."
+    },
+    {
+      "path": "studio/public/demo/boing.wav",
+      "sha256": "91a1d79e5a965264bc0c24627cbcc9b67068bef2f618e15fcd0a832f5c44c103",
+      "license": "MIT",
+      "provenance": "Synthesized by tools/synth_audio.py without third-party samples."
+    },
+    {
+      "path": "studio/public/demo/chime.wav",
+      "sha256": "68919327a779c88a204927419f01c3066e914b2c0de724514e28599a667694e5",
+      "license": "MIT",
+      "provenance": "Synthesized by tools/synth_audio.py without third-party samples."
+    },
+    {
+      "path": "studio/public/demo/friend.svg",
+      "sha256": "8eaadfa825d6d0daf21f2b3876de296cb03f415784e957c9331ed729f9b98745",
+      "license": "MIT",
+      "provenance": "Original schematic artwork created for this toolkit."
+    },
+    {
+      "path": "studio/public/demo/landscape.svg",
+      "sha256": "1fac3788cd19f4f375c7015cbd34f892cddf30a476966135c88ffc28ff5ed592",
+      "license": "MIT",
+      "provenance": "Original schematic artwork created for this toolkit."
+    },
+    {
+      "path": "studio/public/demo/portrait.svg",
+      "sha256": "52c290ca56929dbc8e7e67c69b173b8a9f8723a8b20dd07ea695d20360deb72f",
+      "license": "MIT",
+      "provenance": "Original schematic artwork created for this toolkit."
+    },
+    {
+      "path": "studio/public/demo/swish.wav",
+      "sha256": "a0f593d25a3ec1dc20a5be2794ecbf5dc28abb9723e0747b1fba42887d78bb75",
+      "license": "MIT",
+      "provenance": "Synthesized by tools/synth_audio.py without third-party samples."
+    },
+    {
+      "path": "studio/public/demo/zap.wav",
+      "sha256": "cc794d0fec5f1dadbc2a096539e0f25d5007bc260de3f9e7d508f41e0a1d8166",
+      "license": "MIT",
+      "provenance": "Synthesized by tools/synth_audio.py without third-party samples."
+    }
+  ]
+}

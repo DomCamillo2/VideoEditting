@@ -30,3 +30,9 @@ Jeder gewählte Clip braucht einen Zweck: Ort zeigen, Bewegung tragen, Beziehung
 ## Nutzerkorrekturen ernst nehmen
 
 „Viel mehr funny“ darf zu deutlich mehr Comedy führen. Erhöhe passende Momente und Variationen, nicht nur die Stärke desselben Zooms. Wenn die genaue letzte Hafenroute dem Nutzer egal ist, keine zusätzliche Recherche zum Blocker machen: neutral beschriften und Unsicherheit dokumentieren. Ein stimmiger Rückblick darf die Chronologie verlassen, wenn er klar als Finale erkennbar ist; Hauptreise und Rückblick getrennt prüfen.
+
+## Assistierter Rohschnitt und Übergabe
+
+Für lange Clips können Szenenerkennung, Kontaktbilder und Aktivitätsanalyse Kandidaten liefern. Prüfe auch die vorgeschlagenen Ausschlüsse, damit Landschaftsruhe, Lachen und Reaktionen erhalten bleiben. [Auswahlhilfe und Werkzeuggrenzen](../skills/video-select-media/references/assisted-selection.md).
+
+Quell-In/Out und Timeline-Start/Dauer getrennt speichern, mit expliziten Bildraten und exklusivem Endframe. Vor langem Render mit `validate --media-root` fehlende/verknüpfte Medien prüfen; für die Übergabe eine `cut-list`-CSV erzeugen. [Befehle und Beispiel](../tools/README.md). Ramps und VFR brauchen eine gesonderte Zeitabbildung.

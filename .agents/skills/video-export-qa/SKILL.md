@@ -11,6 +11,7 @@ Read the brief and intended deliverable. A small fix needs checks proportional t
 
 - Check source dimensions, rotation, fps/time bases, variable-frame-rate behavior and audio synchronization. Choose target fps from the brief/material; don't impose 30 fps on every project. Relink proxies to correct originals and inspect source in/out points.
 - Confirm aspect ratio, resolution, codec and color pipeline. Mixed HDR/SDR needs explicit handling and test encodes; keep skin/highlights stable across cuts. Do not label an SDR export HDR. Compare adjacent exposure and white balance before applying a heavy look.
+- Validate media references against the project root before rendering: files must exist and symlinks must not escape the intended media scope. Keep explicit source in/out (exclusive end), source fps, timeline fps and constant playback rate; compare mapped duration to the chosen shot length. Unknown source ranges stay unknown. A file-existence check does not measure available frames or certify decode quality.
 - Render a small representative sample including a portrait/group, fast action, dark scene, transition, gag if selected, song change, speech and ending. Inspect actual frames and movement. A web player or TypeScript build alone is not an encoded-video test.
 
 ## Full preview and master

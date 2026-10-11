@@ -24,6 +24,10 @@ Stand 11.10.2026. Die folgenden Fälle wurden gegen die Anweisungen gelesen und 
 | Hafen der Rückfahrt unklar, Nutzer sagt egal | Neutral beschriften und Unsicherheit dokumentieren; keine Fähre erfinden | video-chronology |
 | Musik überdeckt kurze Aussage | Nur relevante Originaltonstelle nutzen, Musik passend absenken und Mix anhören | video-audio-mix |
 | Build bestanden, Export noch nicht angesehen | Tatsächliche Datei prüfen; Sicht-/Hörstatus offen lassen bis durchgeführt | video-export-qa |
+| Szenenerkennung markiert einen schnellen Kameraschwenk | Übergang ansehen; Detektorgrenze bleibt ein Vorschlag, kein Qualitätsurteil | video-select-media |
+| Aktivitätsanalyse entfernt eine leise lustige Pause | Vorgeschlagenen Ausschluss mit Kontext prüfen und die Pause gegebenenfalls schützen | video-select-media |
+| Proxy hat andere fps als das Original | Quelle, Zeitabbildung und Sync vor dem finalen Render prüfen | video-export-qa |
+| Übergabe an einen anderen Editor | Quell- und Timelinebereiche mit getrennten fps liefern; Effektkompatibilität nicht behaupten | video-editing, video-export-qa |
 
 ## Reproduzierbare Prüfungen
 

@@ -31,3 +31,7 @@ Review the timeline for repeated compositions across adjacent clusters, balanced
 ## Manifest
 
 Use stable IDs and fields: `asset_id`, `cluster_id`, `exact_duplicate_of`, `decision` (`keep`, `reserve`, `exclude`, `review`), `reason`, `subject_focus`, `expression`, `story_value`, `source_in`, `source_out`, `chapter`, `second_selection_reason`, `review_resolution`, `review_status`. Use qualitative labels or `unknown`, not fabricated precision. Summarize counts, remaining review items and why several versions of one scene were retained.
+
+## Optional automation and handoff
+
+For long clips, speech-heavy rough cuts, proxy relinking or another editor, read [assisted selection](references/assisted-selection.md). It explains when scene detection, activity-based cuts and segment tools help, what needs review, and how to preserve source timing. Do not install those tools just to read this skill.

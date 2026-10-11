@@ -4,10 +4,11 @@ from pathlib import Path
 import re
 import sys
 from urllib.parse import unquote
+from public_assets import audit_assets
 
 root=Path(__file__).resolve().parents[1]
-errors=[]
-skip={'.git','node_modules','out','build','local','analysis','exports','__pycache__'}
+errors=audit_assets(root)
+skip={'.git','node_modules','out','build','local','analysis','exports','private','__pycache__'}
 for path in root.rglob('*'):
     if set(path.relative_to(root).parts)&skip or not path.is_file():continue
     if path.suffix not in {'.md','.py','.tsx','.ts','.json','.yaml','.yml','.csv'}:continue
@@ -22,4 +23,4 @@ for path in root.rglob('*'):
             if not resolved.exists():errors.append(str(path.relative_to(root))+': broken link '+target)
 if errors:
     print('\n'.join(errors));sys.exit(1)
-print('Local Markdown links and path hygiene passed')
+print('Local Markdown links, path hygiene and public asset inventory passed')

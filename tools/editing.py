@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Local, read-only media audit helpers. Python 3.9+, no Python dependencies."""
 import argparse
+import csv
 import hashlib
 import json
 import math
@@ -23,11 +24,11 @@ def sha256(path):
 
 
 def write_new(path, data):
+    text = json.dumps(data, ensure_ascii=False, indent=2, allow_nan=False) + "\n"
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open('x', encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=2, allow_nan=False)
-        f.write('\n')
+    with path.open("x", encoding="utf-8") as f:
+        f.write(text)
 
 
 def run(args):
@@ -143,89 +144,197 @@ def catalog(root, output, zone=None, metadata_json=None):
                            note='Working order only. No mtime fallback; unresolved media require review.'))
 
 
-def frame_at(seconds, fps):
-    value = float(seconds) * float(fps)
-    if not math.isfinite(value) or value < 0:
-        raise ValueError('Nonnegative finite time required')
-    return math.floor(value + 0.5)
-
-
-def validate(data):
-    errors, warnings = [], []
+def rational(value, positive=False):
+    if isinstance(value, bool) or not isinstance(value, (int, float, str, Fraction)):
+        raise ValueError('Finite number or rational string required')
     try:
-        fps = float(Fraction(str(data['fps'])))
-        if not math.isfinite(fps) or fps <= 0:
-            raise ValueError()
-    except (KeyError, ValueError, ZeroDivisionError):
+        result = Fraction(str(value))
+    except (ValueError, ZeroDivisionError, OverflowError):
+        raise ValueError('Finite number or rational string required') from None
+    if result < 0 or (positive and result == 0):
+        raise ValueError('Positive value required' if positive else 'Nonnegative value required')
+    return result
+
+
+def frame_at(seconds, fps):
+    # Keep exact rational arithmetic through the half-up rounding boundary.
+    return math.floor(rational(seconds) * rational(fps, positive=True) + Fraction(1, 2))
+
+
+def relative_asset(value):
+    """Portable project-relative paths, not URLs, drive paths or traversal."""
+    return (isinstance(value, str) and bool(value)
+            and not any(ord(c) < 32 for c in value)
+            and not any(c in value for c in ('\\', ':'))
+            and all(part not in ('', '.', '..') for part in value.split('/')))
+
+
+def validate(data, media_root=None):
+    errors, warnings = [], []
+    if not isinstance(data, dict):
+        return ['Timeline must be a JSON object'], []
+    try:
+        fps = rational(data.get('fps'), positive=True)
+    except ValueError:
         return ['fps must be a positive number or rational string'], []
+    if 'schema_version' in data and (type(data['schema_version']) is not int or data['schema_version'] != 1):
+        errors.append('Unsupported schema_version; expected 1')
     duration = data.get('duration_frames')
-    if type(duration) is not int or duration <= 0:
+    valid_duration = type(duration) is int and duration > 0
+    if not valid_duration:
         errors.append('duration_frames must be a positive integer')
-    shots = data.get('shots', [])
-    if not shots:
-        errors.append('No shots')
+    root = Path(media_root).resolve() if media_root is not None else None
+    if root is not None and not root.is_dir():
+        errors.append('media_root must be an existing directory')
+    shots = data.get('shots')
+    if not isinstance(shots, list) or not shots:
+        errors.append('shots must be a nonempty list')
+        shots = []
     cursor, ids, last_main = 0, set(), None
-    for s in shots:
-        sid = s.get('id')
-        if not isinstance(sid, str) or not sid or sid in ids:
-            errors.append('Missing or duplicate shot id')
-        ids.add(sid)
-        start, length = s.get('start_frame'), s.get('duration_frames')
-        if type(start) is not int or type(length) is not int or start < 0 or length <= 0:
-            errors.append(f'{sid}: invalid frame interval')
+    for index, shot in enumerate(shots):
+        if not isinstance(shot, dict):
+            errors.append(f'Shot {index}: must be an object')
             continue
-        if start != cursor:
-            errors.append(f'{sid}: gap/overlap at {start}; expected {cursor}')
-        cursor = start + length
-        if length / fps < 0.5 and not s.get('short_shot_reason'):
-            warnings.append(f'{sid}: under 0.5 seconds without stated reason')
-        path = s.get('asset', '')
-        if not path or Path(path).is_absolute() or '..' in Path(path).parts or re.match(r'^[A-Za-z]:', path):
-            errors.append(f'{sid}: asset must be a relative path inside the project')
-        if s.get('role', 'main') not in ('main', 'recap', 'graphic'):
-            errors.append(f'{sid}: role must be main, recap or graphic')
-        captured = s.get('captured_utc')
+        sid = shot.get('id')
+        if not isinstance(sid, str) or not sid or sid in ids:
+            errors.append(f'Shot {index}: missing or duplicate shot id')
+        else:
+            ids.add(sid)
+        label = sid if isinstance(sid, str) else f'Shot {index}'
+        start, length = shot.get('start_frame'), shot.get('duration_frames')
+        interval_ok = type(start) is int and type(length) is int and start >= 0 and length > 0
+        if not interval_ok:
+            errors.append(f'{label}: invalid frame interval')
+        else:
+            if start != cursor:
+                errors.append(f'{label}: gap/overlap at {start}; expected {cursor}')
+            cursor = start + length
+            if length / fps < Fraction(1, 2) and not shot.get('short_shot_reason'):
+                warnings.append(f'{label}: under 0.5 seconds without stated reason')
+        asset = shot.get('asset')
+        if not relative_asset(asset):
+            errors.append(f'{label}: asset must be a relative path inside the project')
+        elif root is not None:
+            candidate = (root / asset).resolve()
+            try:
+                candidate.relative_to(root)
+            except ValueError:
+                errors.append(f'{label}: asset resolves outside media_root')
+            else:
+                if not candidate.is_file():
+                    errors.append(f'{label}: asset is missing or not a file: {asset}')
+        role = shot.get('role', 'main')
+        if role not in ('main', 'recap', 'graphic'):
+            errors.append(f'{label}: role must be main, recap or graphic')
+        captured = shot.get('captured_utc')
         if captured:
             try:
                 utc, _ = timestamp(captured)
                 if not utc:
                     raise ValueError()
                 stamp = datetime.fromisoformat(utc)
-                if s.get('role', 'main') == 'main':
-                    if last_main and stamp < last_main and not s.get('chronology_override_reason'):
-                        errors.append(f'{sid}: chronology inversion without explanation')
+                if role == 'main':
+                    if last_main and stamp < last_main and not shot.get('chronology_override_reason'):
+                        errors.append(f'{label}: chronology inversion without explanation')
                     last_main = stamp
-            except (ValueError, TypeError):
-                errors.append(f'{sid}: captured_utc requires a valid explicit offset')
-        elif s.get('role', 'main') == 'main':
-            warnings.append(f'{sid}: capture time unresolved')
-        if 'beat_seconds' in s and frame_at(s['beat_seconds'], fps) != start:
-            errors.append(f'{sid}: start does not match rounded selected beat')
-    if cursor != duration:
+            except (ValueError, TypeError, OverflowError):
+                errors.append(f'{label}: captured_utc requires a valid explicit offset')
+        elif role == 'main':
+            warnings.append(f'{label}: capture time unresolved')
+        if 'beat_seconds' in shot:
+            try:
+                if frame_at(shot['beat_seconds'], fps) != start:
+                    errors.append(f'{label}: start does not match rounded selected beat')
+            except ValueError:
+                errors.append(f'{label}: beat_seconds must be finite and nonnegative')
+        source = shot.get('source')
+        if source is not None:
+            try:
+                if not isinstance(source, dict):
+                    raise ValueError('source must be an object')
+                source_fps = rational(source.get('fps'), positive=True)
+                speed = rational(source.get('playback_rate', 1), positive=True)
+                begin, end = source.get('in_frame'), source.get('out_frame')
+                if type(begin) is not int or type(end) is not int or begin < 0 or end <= begin:
+                    raise ValueError('source requires 0 <= in_frame < out_frame (exclusive)')
+                total = source.get('total_frames')
+                if total is not None and (type(total) is not int or total <= 0 or end > total):
+                    raise ValueError('source range exceeds total_frames or total_frames is invalid')
+                if total is None:
+                    warnings.append(f'{label}: source total_frames unknown; bounds not verified')
+                expected = frame_at(Fraction(end - begin, 1) / source_fps / speed, fps)
+                if interval_ok and expected != length:
+                    raise ValueError(f'source range maps to {expected} timeline frames, expected {length}')
+            except ValueError as exc:
+                errors.append(f'{label}: {exc}')
+        elif isinstance(asset, str) and Path(asset).suffix.lower() in ('.mp4', '.mov', '.m4v', '.mkv', '.webm'):
+            warnings.append(f'{label}: video source in/out and source fps not recorded')
+    if valid_duration and cursor != duration:
         errors.append(f'Timeline ends at {cursor}, expected {duration}')
-    for fx in data.get('effects', []):
+    effects = data.get('effects', [])
+    if not isinstance(effects, list):
+        errors.append('effects must be a list')
+        effects = []
+    for fx in effects:
+        if not isinstance(fx, dict):
+            errors.append('Effect must be an object')
+            continue
         start, length = fx.get('start_frame'), fx.get('duration_frames')
-        if type(start) is not int or type(length) is not int or start < 0 or length <= 0 or type(duration) is not int or start + length > duration:
+        if type(start) is not int or type(length) is not int or start < 0 or length <= 0 or not valid_duration or start + length > duration:
             errors.append('Effect outside timeline or invalid duration')
     return errors, warnings
 
 
 def beat_report(data):
-    fps = float(Fraction(str(data['fps'])))
-    beats = data.get('beats_seconds', [])
-    if fps <= 0 or not math.isfinite(fps) or not beats or any(not math.isfinite(x) or x < 0 for x in beats):
-        raise ValueError('Positive fps and nonempty finite nonnegative beat list required')
+    if not isinstance(data, dict):
+        raise ValueError('Beat input must be an object')
+    fps = rational(data.get('fps'), positive=True)
+    beats = data.get('beats_seconds')
+    cuts = data.get('cuts_frames')
+    if not isinstance(beats, list) or not beats or not isinstance(cuts, list):
+        raise ValueError('Nonempty beat list and cut list required')
+    beats = [rational(value) for value in beats]
     rows = []
-    for frame in data['cuts_frames']:
+    for frame in cuts:
         if type(frame) is not int or frame < 0:
             raise ValueError('Cut frames must be nonnegative integers')
         nearest = min(beats, key=lambda b: abs(b - frame / fps))
-        rows.append(dict(frame=frame, nearest_selected_beat=nearest,
-                         error_ms=round((frame / fps - nearest) * 1000, 3),
+        rows.append(dict(frame=frame, nearest_selected_beat=float(nearest),
+                         error_ms=round(float((frame / fps - nearest) * 1000), 3),
                          nearest_frame=frame_at(nearest, fps),
                          frame_aligned=frame == frame_at(nearest, fps)))
-    return dict(fps=fps, cuts=rows, all_frame_aligned=all(x['frame_aligned'] for x in rows),
+    return dict(fps=float(fps), fps_rational=str(fps), cuts=rows,
+                all_frame_aligned=bool(rows) and all(x['frame_aligned'] for x in rows),
                 listening_review='pending', note='Selected-marker alignment, not musical or auditory validation.')
+
+
+def cut_list(data, output, media_root=None):
+    """Export a review CSV, not an editor-specific EDL or rendered effects."""
+    errors, warnings = validate(data, media_root)
+    if errors:
+        raise ValueError('Invalid timeline: ' + '; '.join(errors))
+    fields = ['id', 'asset', 'timeline_fps', 'start_frame', 'end_frame_exclusive',
+              'duration_frames', 'source_fps', 'source_in_frame', 'source_out_frame_exclusive',
+              'playback_rate', 'role', 'captured_utc']
+    rows = []
+    for shot in data['shots']:
+        source = shot.get('source') or {}
+        row = dict(id=shot['id'], asset=shot['asset'], timeline_fps=str(rational(data['fps'])),
+                   start_frame=shot['start_frame'], end_frame_exclusive=shot['start_frame'] + shot['duration_frames'],
+                   duration_frames=shot['duration_frames'], source_fps=source.get('fps', ''),
+                   source_in_frame=source.get('in_frame', ''), source_out_frame_exclusive=source.get('out_frame', ''),
+                   playback_rate=source.get('playback_rate', 1) if source else '',
+                   role=shot.get('role', 'main'), captured_utc=shot.get('captured_utc', ''))
+        # This CSV is for human review; don't execute filenames as spreadsheet formulas.
+        rows.append({key: "'" + value if isinstance(value, str) and value.startswith(('=', '+', '-', '@', '\t', '\r', '\n')) else value
+                     for key, value in row.items()})
+    output = Path(output)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with output.open('x', encoding='utf-8', newline='') as handle:
+        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer.writeheader()
+        writer.writerows(rows)
+    return warnings
 
 
 def qa(path, output, expected_frames=None):
@@ -263,7 +372,8 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     sub = p.add_subparsers(dest='command', required=True)
     c = sub.add_parser('catalog'); c.add_argument('root'); c.add_argument('output'); c.add_argument('--zone'); c.add_argument('--metadata-json')
-    v = sub.add_parser('validate'); v.add_argument('timeline')
+    v = sub.add_parser('validate'); v.add_argument('timeline'); v.add_argument('--media-root')
+    e = sub.add_parser('cut-list'); e.add_argument('timeline'); e.add_argument('output'); e.add_argument('--media-root')
     b = sub.add_parser('beat-report'); b.add_argument('input'); b.add_argument('output')
     q = sub.add_parser('qa'); q.add_argument('video'); q.add_argument('output'); q.add_argument('--expected-frames', type=int)
     a = p.parse_args()
@@ -271,9 +381,12 @@ def main():
         if a.command == 'catalog':
             catalog(a.root, a.output, a.zone, a.metadata_json)
         elif a.command == 'validate':
-            errors, warnings = validate(json.loads(Path(a.timeline).read_text()))
+            errors, warnings = validate(json.loads(Path(a.timeline).read_text()), a.media_root)
             print(json.dumps(dict(errors=errors, warnings=warnings), indent=2))
             return 1 if errors else 0
+        elif a.command == 'cut-list':
+            warnings = cut_list(json.loads(Path(a.timeline).read_text()), a.output, a.media_root)
+            print(json.dumps(dict(warnings=warnings, note='Review CSV; effects and audio are not exported'), indent=2))
         elif a.command == 'beat-report':
             write_new(a.output, beat_report(json.loads(Path(a.input).read_text())))
         elif a.command == 'qa':

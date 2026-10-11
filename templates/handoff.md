@@ -6,6 +6,8 @@
 - Einstieg ins bearbeitbare Projekt und genauer Startbefehl:
 - Toolversionen / Betriebssystem / Browser:
 - Medienordner und relatives Manifest:
+- Schnittliste mit Quell-In/Out, exklusiven Endframes, Quell-/Timeline-fps und Tempo:
+- Proxy-zu-Original-Zuordnung, Hashes und VFR-/Retime-Besonderheiten:
 - Musikstand mit Hashes und Trims:
 - Aktuelle Nutzerwünsche:
 - Bereits erledigt:

@@ -69,6 +69,7 @@ npm run dev -- --no-open
 | Erfahrungen und bekannte Fehler | [Fallstudien](docs/learnings.md), [Provenienz](docs/provenance.md) |
 | Weitere wichtige Schnittentscheidungen | [Recherche: Auswahl, Ton und Qualität](docs/editing-research.md) |
 | An anderes LLM übergeben | [Handoff](templates/handoff.md), [Agent-Skill](skills/video-editing/SKILL.md) |
+| Repository-Audit und Erkenntnisse anderer Schnittwerkzeuge | [Audit und Vergleich](docs/repository-audit.md) |
 | Songs lokal nutzen | [Musikverzeichnis](music/README.md) |
 
 ## Was geteilt wird
