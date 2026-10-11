@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "fps": "30/1",
+  "duration_frames": 180,
+  "shots": [
+    {"id":"arrival","asset":"local/media/arrival.jpg","start_frame":0,"duration_frames":90,"captured_utc":"2024-08-01T10:00:00Z","role":"main"},
+    {"id":"friends","asset":"local/media/friends.jpg","start_frame":90,"duration_frames":90,"captured_utc":"2024-08-01T10:05:00Z","role":"main","beat_seconds":3.0}
+  ],
+  "effects": [{"type":"spin","start_frame":100,"duration_frames":55}]
+}
