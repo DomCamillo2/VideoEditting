@@ -6,7 +6,7 @@ Die zehn Skills sind eigenständige Ordner mit `SKILL.md`. Der erste Einstieg is
 |---|---|---|
 | [video-setup](../skills/video-setup/SKILL.md) | Erste Einrichtung: Skills wählen, MCPs prüfen und freigegebene Einrichtung ausführen | [ZIP](../dist/skills/video-setup.zip) |
 | [video-editing](../skills/video-editing/SKILL.md) | Geschichte, Rohschnitt, Pacing und Koordination | [ZIP](../dist/skills/video-editing.zip) |
-| [video-brief](../skills/video-brief/SKILL.md) | Erste Stilwahl, Humorgrad, Format, Wünsche | [ZIP](../dist/skills/video-brief.zip) |
+| [video-brief](../skills/video-brief/SKILL.md) | Stil, Humor, Reiseart, relevante Fahrzeugdetails und Format | [ZIP](../dist/skills/video-brief.zip) |
 | [video-beatcut](../skills/video-beatcut/SKILL.md) | Hörbare Akzente, Songphasen, Framegrenzen, Drift | [ZIP](../dist/skills/video-beatcut.zip) |
 | [video-select-media](../skills/video-select-media/SKILL.md) | Kontaktbögen, Motivschärfe, ähnliche Bilder, beste Momente | [ZIP](../dist/skills/video-select-media.zip) |
 | [video-portrait-framing](../skills/video-portrait-framing/SKILL.md) | Unscharfer Hintergrund, sichere Gesichter/Körper, kein Stretch | [ZIP](../dist/skills/video-portrait-framing.zip) |
@@ -61,13 +61,15 @@ Optionaler Terminal-Assistent:
 python3 tools/brief.py local/project-v001/brief.json
 ```
 
-Er fragt Richtung, Humor, Format, Länge, Medien und Musik. Die Humorauswahl kann den Profilvorschlag ändern; Schnitttempo ist davon unabhängig. Nicht-interaktiv mit bekannten Antworten:
+Er fragt Richtung, Humor, Format, Reiseart, Länge, Medien und Musik. Bei Reisen folgen passende Fragen zu Reisephase, Region/Route und Verkehrsmitteln; bei Roadtrip/Mischform auch zum Fahrzeug. „Noch offen“ und „Kein Reisefilm“ sind möglich. Bekannte Kommandozeilenangaben werden nicht erneut abgefragt. Die Humorauswahl kann den Profilvorschlag ändern; Reiseart und Schnitttempo sind davon unabhängig. [Reisearten und USA-Roadtrip-Ideen](travel-films.md). Nicht-interaktiv mit bekannten Antworten:
 
 ```sh
 python3 tools/brief.py local/project-v002/brief.json --style serious --humor none --format 16:9 --duration "3 Minuten" --pacing schnell --non-interactive
 ```
 
 Unbekannte Werte sind `null` und stehen in `unresolved`. Der Assistent analysiert keine Medien und rendert keinen Film. Er überschreibt keine vorhandene Datei. Eigene Stilbeschreibungen können im Chat bzw. im Briefing ergänzt werden.
+
+Neue optionale Felder: `trip_type`, `trip_type_details`, `trip_stage`, `region`, `route`, `transport`, `vehicle`, `vehicle_role`, `map_preference`, `story_focus`; entsprechende CLI-Flags verwenden Bindestriche. `--mode` erfasst die Ausgabeform unabhängig davon. Bei `not_travel` werden Reiseangaben nicht als offene Fragen aufgelistet. Sonstige offene optionale Felder sind Notizen, kein Auftrag, einen vollständigen Fragenkatalog abzuarbeiten. Alte Briefings ohne Reisefelder bleiben gültig.
 
 ## Pflege
 

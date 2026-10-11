@@ -1,6 +1,10 @@
 # Projektbrief
 
-- Modus: Roadtrip / Recap / Reel / anderer
+- Ausgabeform: Film / Recap / Reel / andere
+- Reiseart, falls relevant: Roadtrip / ein Ort mit Ausflügen / Rundreise / Aktivität-Abenteuer / Mischform / eigene
+- Reisephasen bei Mischformen, z. B. Stadtaufenthalt → Roadtrip:
+- Reise geplant / unterwegs / bereits gefilmt:
+- Land/Region oder Hauptort; was ist das Besondere dieser Reise?
 - Zielgruppe und Veröffentlichungsort:
 - Materialordner (lokal):
 - Vorhandenes Projekt / letzte gute Version:
@@ -14,6 +18,11 @@
 - Originalton: stumm / ausgewählte Momente / Schwerpunkt:
 - Chronologie strikt? Rückblick erlaubt?
 - Bekannte Orte/Route; unsichere Abschnitte:
+- Verkehrsmittel je Etappe, einschließlich Wechsel und unbekannter Abschnitte:
+- Fahrzeug, falls relevant: Typ, Marke/Modell soweit sicher, Farbe, prägende Details/Spitzname:
+- Rolle des Fahrzeugs: beiläufig / wiederkehrendes Motiv / im Mittelpunkt:
+- Karten: keine / kurze Übersicht / Übergänge bei wichtigen Etappen / eigene Idee:
+- Wiederkehrende Rituale, Originaltöne oder gemeinsame Insider; nur tatsächlich vorhandene Momente:
 - Personen-/Framing-Wünsche:
 - Was unbedingt vorkommen soll:
 - Was nicht veröffentlicht werden darf:

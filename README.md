@@ -8,7 +8,7 @@ Ein deutschsprachiger Werkzeugkasten für LLM-gestützte Roadtrip-Filme, Freunds
 
 1. **Skills:** „Möchtest du alle Skills installieren/übernehmen, nur bestimmte auswählen oder zunächst nur die Anleitung nutzen?“ Host und Zielprojekt werden nur ergänzt, wenn noch unbekannt.
 2. **MCPs:** Das LLM prüft vorhandene Tools und schlägt wenige passende Ergänzungen vor: „Soll ich diese MCPs einrichten, einzelne davon oder keine zusätzlichen?“ Zweck, Zugang und Installationsort werden vorher benannt.
-3. **Danach:** Filmstil, Humor, Länge, Format, Medien und Musik.
+3. **Danach:** Filmstil, Humor, Länge, Format, Medien und Musik; bei Reisen auch Reiseart, Mischphasen und passende Fahrzeugdetails.
 
 Ein vollständiger Klon enthält die Projekt-Skills bereits. Dann geht es um ihre Nutzung oder Übernahme in ein anderes Projekt. Bereits beantwortete Fragen werden nicht wiederholt; zusätzliche MCPs sind optional. [Beispieldialog und Ablauf](SETUP.md) · [MCP-Kandidaten](skills/video-setup/references/integrations.md) · [Recherche vergleichbarer Repos](docs/onboarding-research.md).
 
@@ -66,6 +66,7 @@ npm run dev -- --no-open
 | Ziel | Einstieg |
 |---|---|
 | Neuer Film oder bestehender Schnitt | [Workflow](docs/workflow.md), [Briefing](templates/brief.md) |
+| Roadtrip, Urlaub an einem Ort oder Mischform | [Reisearten, Fahrzeugfragen und USA-Filmideen](docs/travel-films.md) |
 | Codex-/Claude-Skills installieren | [Skills und Stilwahl](docs/skills.md) |
 | Gute Bilder statt fünf ähnlicher | [Medienauswahl](docs/media-selection.md), [Auswahl-Skill](skills/video-select-media/SKILL.md) |
 | Chronologie und unsichere Route | [Metadaten und Karten](docs/metadata-routes.md) |

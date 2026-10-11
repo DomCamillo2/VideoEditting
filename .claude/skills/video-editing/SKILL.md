@@ -17,6 +17,8 @@ Read the current brief, available media and last good project version first. For
 
 Free-text answers and combinations are valid. Tone, pace and gag quantity are separate controls. Do not re-ask known preferences or interrupt a small revision with onboarding. If the user delegates style, state the chosen assumption; if they have not chosen yet, inventory and contact sheets can proceed while the question is pending. Use `video-brief` when available.
 
+For travel, also establish whether this is a roadtrip, one base, multi-stop journey, activity-led trip or a mixture. Build chapters around that structure: one-place films can follow daily life and relationships; mixed trips may start with a city chapter before driving begins. Ask relevant vehicle type/model/color/role and actual transport per leg without guessing unknown details. Travel type, humor and output format are independent. For planned trips provide shot ideas; for recorded trips work from available coverage.
+
 ## Build the edit
 
 1. Inspect existing projects and sources; create a new version without changing originals. Record available editor/render tools. If tools or media are absent, produce a concrete edit decision list and state what cannot yet be rendered.

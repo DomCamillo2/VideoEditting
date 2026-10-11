@@ -2,7 +2,7 @@
 
 Stand: 11.10.2026. Ergebnisse für den Toolkit-Starter, getrennt vom historischen Roadtrip.
 
-- 93 Python-Tests bestanden, mit den optionalen Pillow-/NumPy-Abhängigkeiten: 69 bestehende Prüfungen für Metadaten, Timeline, Beatbericht, Quellbereiche, Handoff, Veröffentlichung und Skill-Installation; 24 neue Prüfungen für Orientierung, Schärfevergleich, Fokusregionen, stabile Medien-IDs, Duplikate, Ähnlichkeitsgruppen, Onsets, Renderdaten, rationale Tempo-/Audioangaben, tatsächliche Quellstreams, Browser-Retry und Überschreibschutz. Ohne Analysepakete werden die betreffenden Tests ausdrücklich übersprungen.
+- 100 Python-Tests bestanden, mit den optionalen Pillow-/NumPy-Abhängigkeiten: 69 bestehende Prüfungen für Metadaten, Timeline, Beatbericht, Quellbereiche, Handoff, Veröffentlichung und Skill-Installation; 24 Pipeline-Prüfungen für Orientierung, Schärfevergleich, Fokusregionen, stabile Medien-IDs, Duplikate, Ähnlichkeitsgruppen, Onsets, Renderdaten, rationale Tempo-/Audioangaben, tatsächliche Quellstreams, Browser-Retry und Überschreibschutz; sieben zusätzliche Reisebriefing-Prüfungen. Ohne Analysepakete werden die betreffenden Tests ausdrücklich übersprungen.
 - Beide Beispiel-Timelines ohne Fehler/Warnungen validiert; CLI-Smoke-Tests für CSV-Schnittliste und Beatreport bestanden. Quell-In/Out und Timeline-Grenzen im CSV kontrolliert.
 - Alle zehn Skill-Frontmatter mit dem Skill-Creator-Validator geprüft. Interne Ressourcen sind ohne Repository verfügbar; Kopien für Codex/Claude und ZIPs stimmen mit ihren Quellen überein. Installation beider Host-Varianten in einem temporären Projekt und identische Wiederholungsinstallation getestet.
 - Remotion TypeScript/Lint und Bundle bestanden.
@@ -27,6 +27,8 @@ Der [Schnellstart](end-to-end.md) wurde mit Python 3.9, Node 24 und lokalem Chro
 - [Unabhängiger Übergabetest](handoff-test.md): Ein Agent mit frischem Kontext konnte anhand einer separaten Repository-Kopie Vorschau, Master und Studio erzeugen. Gefundene Probleme beim Browser-Retry und missverständliche Studio-Anzeigen wurden behoben bzw. erklärt.
 
 [Verhaltensfälle und Grenzen der Skill-Prüfung](skill-evaluation.md).
+
+Das Reisebriefing wurde um Reiseart, Mischphasen, Region/Route, Verkehrsmittel und optionale Fahrzeug-/Kartenwünsche ergänzt. Geprüft sind unabhängige Stil-/Formatentscheidungen, erhaltene Unsicherheit, bedingte Fragen für feste Unterkunft und Mischformen, bekannte Antworten ohne Wiederholung, Eingabevalidierung und ausgelassene Reisefragen bei Nicht-Reisefilmen. Das ZIP-Briefingskript wurde auch ohne Repository mit den neuen Optionen ausgeführt. Die [kreativen Reiseideen](travel-films.md) sind recherchierte Empfehlungen und eigene Entwürfe; daraus wurde kein neuer USA-Film erzeugt.
 
 ## Grenzen
 

@@ -6,6 +6,8 @@ Bei erstmaliger Übernahme des Toolkits zuerst [SETUP.md](../SETUP.md): Skills a
 
 Für einen Freundschaftsfilm zählen gemeinsame Erlebnisse, kleine Reaktionen und ein fühlbarer Reisebogen. Ein brauchbarer Aufbau: kurzer Auftakt → Aufbruch → wechselnde Erlebnisse → ruhiger Höhepunkt → gemeinsamer Abschluss. 5–8 Sekunden Intro und 2–5 Sekunden Karten waren geeignete Roadtrip-Werte. Bei einem 20-Sekunden-Reel wären sie viel zu lang.
 
+Die Reiseart beeinflusst diesen Bogen: Roadtrip, ein Ort mit Ausflügen, Rundreise, Aktivität oder Mischform. Bei einem City-Aufenthalt vor dem Roadtrip zuerst Stadtleben erzählen und das Fahrzeug erst in der passenden Phase als Motiv aufnehmen. Fahrzeugtyp und Kartenstil aus dem aktuellen Briefing verwenden. [Fragen, Kapitelmodelle und konkrete Roadtrip-Ideen](travel-films.md).
+
 Eine Version nach der anderen:
 
 | Phase | Konkretes Ergebnis | Freigabe zum Weiterarbeiten |

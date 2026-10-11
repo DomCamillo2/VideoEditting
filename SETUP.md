@@ -51,7 +51,7 @@ Für jeden tatsächlichen Vorschlag knapp benennen: Nutzen, lokaler Prozess oder
 
 4. **Ergebnis lokal festhalten:** [setup.json](templates/setup.json) nach `local/setup-v001.json` kopieren und anpassen: ausgewählte/abgelehnte Skills und MCPs, Installationsumfang, Prüfstatus und offene Schritte. Keine Tokens, privaten Dateilisten oder pauschale zukünftige Freigabe speichern. Beim Wiederkommen Entscheidungen übernehmen und nur Änderungen bzw. fehlgeschlagene Verbindungen bearbeiten.
 
-5. **Erst jetzt das Filmbriefing:** Stil/Humor, Dauer, Format, Medien und Musik nur soweit unbekannt. Weiter mit [START_HERE](START_HERE.md). Wer Zusatzinstallationen ablehnt, darf trotzdem mit vorhandenen Werkzeugen schneiden.
+5. **Erst jetzt das Filmbriefing:** Stil/Humor, Dauer, Format, Medien und Musik nur soweit unbekannt. Bei Reisefilmen zusätzlich Reiseart und Mischphasen, bekannte Route und passende Verkehrsmittel-/Fahrzeugdetails klären. Diese Angaben beeinflussen Geschichte und Karten; keine allgemeine Autopflicht. Weiter mit [START_HERE](START_HERE.md). Wer Zusatzinstallationen ablehnt, darf trotzdem mit vorhandenen Werkzeugen schneiden.
 
 ## Was ein GitHub-Link auslösen kann
 

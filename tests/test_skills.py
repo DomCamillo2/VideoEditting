@@ -75,7 +75,7 @@ class BriefTests(unittest.TestCase):
     def test_wizard_choices_and_retry(self):
         with tempfile.TemporaryDirectory() as tmp, contextlib.redirect_stdout(io.StringIO()):
             path = Path(tmp) / "brief.json"
-            answers = iter(["invalid", "3", "1", "2", "40 Sekunden", "local/raw", "eigene.wav"])
+            answers = iter(["invalid", "3", "1", "2", "not_travel", "40 Sekunden", "local/raw", "eigene.wav"])
             prompts = []
             def reader(prompt):
                 prompts.append(prompt)
@@ -84,6 +84,71 @@ class BriefTests(unittest.TestCase):
             result = json.loads(path.read_text())
             self.assertIn("Welche Richtung", prompts[0])
             self.assertEqual((result["style"], result["humor"], result["format"]), ("funny", "none", "9:16"))
+
+    def test_travel_type_does_not_override_style_or_output(self):
+        result = brief.make_brief("serious", "none", mode="reel", format="9:16", trip_type="roadtrip")
+        self.assertEqual((result["style"], result["humor"], result["mode"], result["format"]), ("serious", "none", "reel", "9:16"))
+        self.assertIsNone(result["vehicle"])
+
+    def test_mixed_trip_preserves_phases_and_uncertain_vehicle(self):
+        result = brief.make_brief("emotional", trip_type="mixed", trip_type_details="Städtetage, dann Überlandfahrt",
+                                  transport="zuerst Bahn, danach Mietwagen", vehicle="Limousine; Modell und Farbe unklar",
+                                  route="Stadt > unbekannte Zwischenstopps > Berge", trip_stage="completed")
+        self.assertEqual(result["vehicle"], "Limousine; Modell und Farbe unklar")
+        self.assertEqual(result["route"], "Stadt > unbekannte Zwischenstopps > Berge")
+        self.assertIn("Bahn", result["transport"])
+
+    def test_invalid_travel_fields_are_rejected(self):
+        for fields in (dict(trip_type="moon"), dict(trip_stage="yesterday"), dict(trip_type=[]), dict(vehicle=42)):
+            with self.subTest(fields=fields), self.assertRaises(ValueError):
+                brief.make_brief("emotional", **fields)
+
+    def test_basecamp_does_not_ask_for_vehicle_or_route(self):
+        with tempfile.TemporaryDirectory() as tmp, contextlib.redirect_stdout(io.StringIO()):
+            path = Path(tmp) / "brief.json"
+            def fail(prompt):
+                self.fail("Unexpected question: " + prompt)
+            code = brief.main([str(path), "--style", "serious", "--humor", "none", "--format", "16:9",
+                               "--trip-type", "basecamp", "--trip-stage", "completed", "--region", "See",
+                               "--transport", "zu Fuß", "--duration", "2 min", "--media", "local/raw", "--music", "offen"], reader=fail)
+            self.assertEqual(code, 0)
+            result = json.loads(path.read_text())
+            self.assertIsNone(result["vehicle"])
+            self.assertIsNone(result["route"])
+
+    def test_known_roadtrip_answers_are_not_asked_again(self):
+        with tempfile.TemporaryDirectory() as tmp, contextlib.redirect_stdout(io.StringIO()):
+            path = Path(tmp) / "brief.json"
+            def fail(prompt):
+                self.fail("Known answer was asked again: " + prompt)
+            code = brief.main([str(path), "--style", "funny", "--humor", "light", "--format", "16:9",
+                               "--trip-type", "roadtrip", "--trip-stage", "planned", "--region", "USA",
+                               "--route", "noch offen", "--transport", "Auto", "--vehicle", "Mietwagen",
+                               "--duration", "5 min", "--media", "noch nicht gefilmt", "--music", "offen"], reader=fail)
+            self.assertEqual(code, 0)
+            result = json.loads(path.read_text())
+            self.assertEqual(result["trip_stage"], "planned")
+            self.assertEqual(result["humor"], "light")
+
+    def test_nontravel_skips_unresolved_travel_questions(self):
+        result = brief.make_brief("serious", trip_type="not_travel")
+        self.assertFalse(set(brief.TRAVEL_FIELDS) & set(result["unresolved"]))
+        self.assertIn("duration", result["unresolved"])
+
+    def test_mixed_wizard_collects_phase_specific_transport(self):
+        with tempfile.TemporaryDirectory() as tmp, contextlib.redirect_stdout(io.StringIO()):
+            path = Path(tmp) / "brief.json"
+            answers = iter(["USA", "Städtetage, dann Roadtrip", "Stadt > unbekannte Stopps > Berge",
+                            "Stadt: zu Fuß; später Auto", "Limousine, Modell unbekannt"])
+            code = brief.main([str(path), "--style", "emotional", "--humor", "light", "--format", "16:9",
+                               "--trip-type", "mixed", "--trip-stage", "completed", "--duration", "5 min",
+                               "--media", "local/raw", "--music", "eigene.wav"], reader=lambda _:next(answers))
+            self.assertEqual(code, 0)
+            result = json.loads(path.read_text())
+            self.assertEqual(result["trip_type_details"], "Städtetage, dann Roadtrip")
+            self.assertEqual(result["transport"], "Stadt: zu Fuß; später Auto")
+            self.assertEqual(result["vehicle"], "Limousine, Modell unbekannt")
+            self.assertIsNone(result["map_preference"])
 
     def test_eof_does_not_choose_or_create(self):
         with tempfile.TemporaryDirectory() as tmp, contextlib.redirect_stderr(io.StringIO()):
@@ -169,9 +234,10 @@ class PackageTests(unittest.TestCase):
                 package.extractall(root)
             script = root / "video-brief/scripts/brief.py"
             output = root / "standalone.json"
-            result = subprocess.run([sys.executable, str(script), str(output), "--style", "emotional", "--non-interactive"], cwd=root, capture_output=True, text=True)
+            result = subprocess.run([sys.executable, str(script), str(output), "--style", "emotional", "--trip-type", "mixed", "--transport", "Bahn, dann Auto", "--non-interactive"], cwd=root, capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertEqual(json.loads(output.read_text())["humor"], "light")
+            self.assertEqual(json.loads(output.read_text())["trip_type"], "mixed")
 
     def test_install_subset_leaves_unselected_conflict(self):
         with tempfile.TemporaryDirectory() as tmp:
