@@ -1,2 +1,8 @@
 import { DemoCompositions } from "./Composition";
-export const RemotionRoot = () => <DemoCompositions />;
+import { ManifestComposition } from "./ManifestFilm";
+export const RemotionRoot = () => (
+  <>
+    <DemoCompositions />
+    <ManifestComposition />
+  </>
+);

@@ -36,10 +36,12 @@ Bei einer beabsichtigten Änderung eines öffentlichen Assets zuerst Herkunft/Nu
 
 ## Bewusst offene Grenzen
 
+Nachtrag zum ursprünglichen Audit: Der [durchgängige Workflow](end-to-end.md) ergänzt inzwischen Kontaktbögen, Ähnlichkeitsgruppen, Onset-Kandidaten und einen echten JSON-zu-MP4-Renderer. [Prüfstand](validation.md) trennt diesen neuen Test von der früheren EffectsLab-Demo.
+
 - Keine automatische objektive Bewertung von Humor, Attraktivität oder Bildästhetik. Automatische Auswahl bleibt überprüfbar.
-- Die optionale Medienprüfung bestätigt Existenz und Pfadgrenzen, nicht Codec, tatsächliche Quellframezahl oder visuelle Eignung. `total_frames` ist eine deklarierte Angabe; vor dem Schnitt messen.
+- Die einfache Medienprüfung in `editing.py validate` bestätigt Existenz und Pfadgrenzen; `total_frames` bleibt eine deklarierte Angabe. Der neue `film.py`-Renderer misst zusätzlich Quellstreams, Framezahl, Bildrate und Audiolänge. Visuelle Eignung bleibt eine Sichtentscheidung.
 - Quellframe-Mapping unterstützt konstante Bildrate und konstante Geschwindigkeit. VFR-Originale benötigen eine geprüfte Zeitstempel-/Proxy-Zuordnung; Speed-Ramps eine eigene Abbildung.
 - Kein getesteter Austausch kompletter Remotion-Effekte mit anderen Editoren. CSV-Formelschutz kann Textfelder mit einem führenden Apostroph versehen; JSON bleibt die maschinenlesbare Quelle.
-- Die bestehende Demo-Komposition wurde bei diesem Audit nicht verändert oder neu gerendert. Ihr früherer Sicht-/Messbericht wird nicht als neuer Render-Test ausgegeben.
+- Die bestehende EffectsLab-Demo blieb unverändert. Der neue ManifestFilm wurde separat in Vorschau- und Masterauflösung gerendert; die Berichte sind getrennt.
 
 Aktueller ausführbarer Prüfstand: [validation.md](validation.md).

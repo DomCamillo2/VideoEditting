@@ -20,3 +20,5 @@ Inputs: actual audio file, chosen excerpt(s), target fps, current edit and desir
 Save a beat table with `song_id`, `source_seconds`, `timeline_seconds`, `target_frame`, `accent_type`, `confidence`, `listening_status`; a cut table with `cut_frame`, `matched_marker`, `delta_ms`, `intentional_offset_reason`; and representative review ranges.
 
 Separate **frame alignment** (nearest frame; theoretical quantization error up to half a frame) from **musical correctness** (the chosen sound is the intended accent) and **editorial quality** (the shot holds long enough). A marker-perfect cut can still feel wrong. Finish songs with a phrase ending, intentional tail/fade or suitable authentic sound.
+
+With a VideoEditting checkout, `tools/beat_candidates.py` proposes local spectral onsets and tempo hypotheses with source-to-timeline mapping. Treat these as unverified candidates, select audible accents, then use `tools/editing.py beat-report` on the chosen markers. The detector never certifies downbeats. The checkout is optional.

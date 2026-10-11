@@ -90,3 +90,7 @@ python3 tools/check_repo.py
 ```
 
 Prüft lokale Markdown-Verweise, private Benutzerpfade und [public-assets.json](../public-assets.json). Jede getrackte Audio-/Video-/Bilddatei braucht einen eigenen Herkunfts-/Lizenz-/Hash-Eintrag. Neue unbestätigte Medien, abweichende Inhalte, verwaiste Einträge und getrackte Dateien aus den privaten Arbeitsordnern führen zu einem Fehler, auch bei `git add -f`. ZIP-Kopien ohne eigenes Git werden anhand ihrer auslieferbaren Dateien geprüft. Der Befehl löscht keine Medien und erteilt keine Lizenz; Änderungen am Verzeichnis erfordern eine tatsächliche Inhalts-/Rechteprüfung.
+
+## Ausführbare Auswahl und Film-Export
+
+[Der vollständige Ablauf](../docs/end-to-end.md) beschreibt `film.py doctor/prepare/render`, `analyze_media.py` (Kontaktbögen, Duplikate, Fokusregionen), `beat_candidates.py` (ungeprüfte Onset-/Tempo-Vorschläge) und `demo_project.py` (eigene synthetische Testmedien). Die neuen Analysewerkzeuge benötigen die optionalen Pakete aus `requirements-analysis.txt`; die bisherigen CLI-Befehle bleiben ohne Python-Zusatzpakete nutzbar.

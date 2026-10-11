@@ -7,6 +7,7 @@ permissions:
 jobs:
   checks:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -17,6 +18,8 @@ jobs:
           node-version: '22'
           cache: npm
           cache-dependency-path: studio/package-lock.json
+      - run: python3 -m pip install -r requirements-analysis.txt
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
       - run: python3 -m unittest discover -s tests -v
       - run: python3 tools/editing.py validate examples/timeline.json
       - run: python3 tools/editing.py validate examples/timeline-source.json
@@ -29,3 +32,15 @@ jobs:
         working-directory: studio
       - run: npm run build
         working-directory: studio
+      - run: python3 tools/demo_project.py "${{ runner.temp }}/demo"
+      - run: python3 tools/analyze_media.py "${{ runner.temp }}/demo/media" "${{ runner.temp }}/demo/review"
+      - run: python3 tools/beat_candidates.py "${{ runner.temp }}/demo/media/original-rhythm.wav" "${{ runner.temp }}/demo/beat-candidates.json" --source-in 0.5
+      - run: python3 tools/film.py render "${{ runner.temp }}/demo/timeline.json" "${{ runner.temp }}/demo/preview.mp4" --media-root "${{ runner.temp }}/demo" --scale 0.25 --gl swangle
+      - uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-pipeline-preview
+          path: |
+            ${{ runner.temp }}/demo/preview.mp4
+            ${{ runner.temp }}/demo/preview.qa.json
+            ${{ runner.temp }}/demo/review/contact-*.jpg
+          retention-days: 7

@@ -35,3 +35,5 @@ Use stable IDs and fields: `asset_id`, `cluster_id`, `exact_duplicate_of`, `deci
 ## Optional automation and handoff
 
 For long clips, speech-heavy rough cuts, proxy relinking or another editor, read [assisted selection](references/assisted-selection.md). It explains when scene detection, activity-based cuts and segment tools help, what needs review, and how to preserve source timing. Do not install those tools just to read this skill.
+
+When the VideoEditting checkout is available, `tools/analyze_media.py` creates paginated contact sheets, exact-duplicate links, conservative similarity groups and optional subject-ROI focus metrics. Read its `--help` and the repo end-to-end guide. Output is review candidates, never an automatic keep/delete verdict. Without the checkout, use equivalent available tools.

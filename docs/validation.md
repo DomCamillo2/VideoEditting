@@ -2,19 +2,31 @@
 
 Stand: 11.10.2026. Ergebnisse für den Toolkit-Starter, getrennt vom historischen Roadtrip.
 
-- 69 Python-Tests bestanden: 24 zusätzliche Audit-Prüfungen für fehlerhafte Daten, rationale Framegrenzen, Quellbereiche/Tempo, fehlende Medien/Symlinks, CSV-Handoff, unveränderte Ausgaben sowie öffentliche Assets; außerdem 24 Prüfungen für Metadaten, Timeline und Beatbericht sowie 21 Prüfungen für Stilwahl, Benutzer-Overrides, offene Angaben, Schreibschutz, Installer-Vorprüfung, Symlink-Abweisung, reproduzierbare ZIPs, Standalone-Briefing, selektive Installation, lesenden Status und Dry-Run ohne Schreibzugriffe.
+- 92 Python-Tests bestanden, mit den optionalen Pillow-/NumPy-Abhängigkeiten: 69 bestehende Prüfungen für Metadaten, Timeline, Beatbericht, Quellbereiche, Handoff, Veröffentlichung und Skill-Installation; 23 neue Prüfungen für Orientierung, Schärfevergleich, Fokusregionen, stabile Medien-IDs, Duplikate, Ähnlichkeitsgruppen, Onsets, Renderdaten, tatsächliche Quellstreams, Browser-Retry und Überschreibschutz. Ohne Analysepakete werden die betreffenden Tests ausdrücklich übersprungen.
 - Beide Beispiel-Timelines ohne Fehler/Warnungen validiert; CLI-Smoke-Tests für CSV-Schnittliste und Beatreport bestanden. Quell-In/Out und Timeline-Grenzen im CSV kontrolliert.
 - Alle zehn Skill-Frontmatter mit dem Skill-Creator-Validator geprüft. Interne Ressourcen sind ohne Repository verfügbar; Kopien für Codex/Claude und ZIPs stimmen mit ihren Quellen überein. Installation beider Host-Varianten in einem temporären Projekt und identische Wiederholungsinstallation getestet.
 - Remotion TypeScript/Lint und Bundle bestanden.
 - Frische separate Kopie ohne node_modules: npm ci, Lint und Bundle bestanden (Node 24 / macOS).
 - npm-Audit nach gezieltem typescript-eslint-Update: 0 bekannte Schwachstellen am Prüfdatum. Das ist keine Garantie für künftige Versionen.
-- Synthetische Demo vollständig exportiert: 810 Frames, 27 Sekunden, 960×540, 30 fps, H.264, yuv420p, BT.709. Vollständiger Decode bestanden, keine Schwarzintervalle erkannt. [Messbericht](demo-qa.json).
+- Bisherige EffectsLab-Demo vollständig exportiert: 810 Frames, 27 Sekunden, 960×540, 30 fps, H.264, yuv420p, BT.709. Vollständiger Decode bestanden, keine Schwarzintervalle erkannt. [Messbericht](demo-qa.json).
 - Neun repräsentative Frames des finalen Encodes visuell kontrolliert. Zusätzliche Bewegungsphasen und Grenzen des ersten Testencodes geprüft; drei Kontaktbögen des finalen Encodes liegen unter [assets](assets/). Bewusstes Verlassen der Leinwand bei Rakete/Davonlaufen ist Teil des Effekts.
-- Die tatsächliche Demo misst −32,88 LUFS / −18,13 dBTP; sie ist eine leise synthetische Timing-Demonstration, kein fertig gemasterter Musikfilm.
+- Die EffectsLab-Demo misst −32,88 LUFS / −18,13 dBTP; sie ist eine leise synthetische Timing-Demonstration, kein fertig gemasterter Musikfilm.
 - Die drei zuvor hochgeladenen fremden Songs und ihr Manifest wurden wegen fehlender Weitergaberechte entfernt, einschließlich ihrer Dateien in der veröffentlichten Git-Historie. MP3-Dateien sind ohne Ausnahme von Git ausgeschlossen. Eigene synthetische Demo-Sounds bleiben enthalten.
-- Lokale Markdown-Verweise, öffentliche Pfad-Hygiene und 13 eigene Demo-Assets gegen Herkunfts-/Hash-Verzeichnis geprüft. GitHub Actions führt Tests, Timeline-Prüfung, Linkprüfung, Skill-Paketprüfung, Lint und Build bei Push/PR aus.
+- Lokale Markdown-Verweise, öffentliche Pfad-Hygiene und 16 eigene Demo-Assets gegen Herkunfts-/Hash-Verzeichnis geprüft. GitHub Actions führt zusätzlich zur bisherigen Prüfung jetzt die synthetische Medienanalyse, Onset-Ermittlung und einen vollständigen 540-Frame-Testexport aus; Vorschau und Prüfbilder werden sieben Tage als CI-Artefakt aufbewahrt.
 
-Das Repository-Audit und die Skill-Erweiterungen ändern keine Film-/Demo-Komposition. Nach dem Audit wurden 69 Python-Prüfungen, Link-/Asset-/Paketprüfung, die vier geänderten Skill-Frontmatter, TypeScript/Lint und Bundle erfolgreich geprüft; die oben dokumentierten Render-/Messwerte gehören weiterhin zur unveränderten Demo. [Verhaltensfälle und Grenzen der Skill-Prüfung](skill-evaluation.md).
+## Neuer vollständiger Workflow
+
+Der [Schnellstart](end-to-end.md) wurde mit Python 3.9, Node 24 und lokalem Chrome/ANGLE auf macOS ausgeführt. Er erzeugt eigene Medien, sichtet sie und rendert die JSON-Timeline über `ManifestFilm`.
+
+- Sieben Medien, vier Ähnlichkeitsgruppen, keine Lesefehler. Exaktes Duplikat erkannt; weiche Variante zusammen mit ihrem vergleichbaren Motiv gruppiert. [Kontaktbogen](assets/pipeline-selection.jpg). Alle Auswahlentscheidungen bleiben überprüfbar; der Datensatz hat absichtlich bekannte Varianten.
+- 39 Onset-Kandidaten, stärkste Tempo-Hypothese 120 BPM; auch 60 BPM erscheint. Die Analyse wird mit dem tatsächlichen Audio-Quellstart von 0,5 Sekunden abgebildet. Das zeigt die Mehrdeutigkeit, nicht automatisch richtige Downbeats.
+- Vorschau 960×540 und lokaler Master 1920×1080: jeweils 540 Frames / 18 Sekunden, 30 fps, H.264/BT.709, vollständiger Decode und keine erkannten Schwarzintervalle. [Vorschau](../examples/pipeline-preview.mp4), [hashgebundener Bericht](pipeline-qa.json).
+- Neun Frames des fertigen Vorschau-Encodes visuell kontrolliert: volle Hochformatfiguren, derselbe Inhalt im unscharfen Hintergrund, Video, Spin und Wisch. [Prüfbilder](assets/pipeline-frames.jpg).
+- Quelltrim zusätzlich an Pixeln kontrolliert: Timeline-Frame 216 entspricht dem Quellvideo um Frame 28 bei 24 fps; es zeigt den gewählten Ausschnitt ab Sekunde 1. Dies ist ein Stichprobentest, keine allgemeine VFR-Zertifizierung.
+- Audio technisch gemessen: −24,72 LUFS / −10,19 dBTP; Kanal-Amplitudenfaktor 0,7492 bei Vorgabe 0,75. Wegen der periodischen Quelle beweist die Korrelation allein keinen Versatz um 0,5 Sekunden. Ein Hörtest bleibt offen. `loudnorm output_*` im Rohbericht ist verworfene Filterausgabe, keine angewandte Normalisierung.
+- [Unabhängiger Übergabetest](handoff-test.md): Ein Agent mit frischem Kontext konnte anhand einer separaten Repository-Kopie Vorschau, Master und Studio erzeugen. Gefundene Probleme beim Browser-Retry und missverständliche Studio-Anzeigen wurden behoben bzw. erklärt.
+
+[Verhaltensfälle und Grenzen der Skill-Prüfung](skill-evaluation.md).
 
 ## Grenzen
 

@@ -32,6 +32,14 @@ python3 tools/manage_skills.py install --target both --project /pfad/zum/videopr
 
 Der Installer unterstützt `status`, `--dry-run` und einzelne `--skill`-Auswahlen; abweichende vorhandene Skills bleiben erhalten. MCPs werden getrennt ausgewählt und eingerichtet. **Nach dem Setup** kann `python3 tools/brief.py local/project-v001/brief.json` den Filmbriefing-Assistenten starten. Unbekannte Angaben bleiben sichtbar offen.
 
+## Ein vollständiger Film aus einer Timeline
+
+Der [durchgängige Schnellstart](docs/end-to-end.md) erzeugt eigene Testmedien, Kontaktbögen, Ähnlichkeitsgruppen und Beat-Kandidaten und rendert eine bearbeitbare JSON-Timeline bis zum geprüften MP4. Für eigene Medien werden dieselben Werkzeuge verwendet. Mit `python3 tools/film.py doctor` zunächst die lokalen Voraussetzungen prüfen.
+
+[18-Sekunden-Beispiel ansehen](examples/pipeline-preview.mp4) · [Materialauswahl mit Duplikaten](docs/assets/pipeline-selection.jpg) · [Prüfbericht](docs/pipeline-qa.json)
+
+![Geprüfte Frames aus dem vollständigen Beispiel](docs/assets/pipeline-frames.jpg)
+
 ## Ausführbare Beispiele
 
 Voraussetzungen: Node.js 22 oder 24, npm; Python 3.9+ für die Prüfwerkzeuge. FFmpeg/ffprobe für Exportanalyse, ExifTool für die echte Medieninventur.

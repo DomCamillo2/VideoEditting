@@ -36,3 +36,7 @@ Free-text answers and combinations are valid. Tone, pace and gag quantity are se
 Keep a local versioned project containing a brief, media catalog, selection reasons, source in/out points, integer-frame timeline with separate source/timeline ranges and their frame rates, music/effect manifest, preview, final file if requested and QA/handoff notes. A finished message must point to the actual export, distinguish preview from master and list material unresolved issues. Local editing does not itself authorize uploading private media.
 
 Do not promise a perfect or viral result from a prompt, automated scores or a successful render alone.
+
+## Optional executable pipeline
+
+With the VideoEditting checkout, read `docs/end-to-end.md`: `tools/film.py` prepares and renders an editable JSON ManifestFilm using local images, trimmed videos, portrait blur, audio fades/ducking and explicitly enabled sticker gags. `doctor` reports missing dependencies. The template supports a defined subset of effects; use a custom composition for complex routes/tracking/face matches. Without this checkout, follow the same editorial workflow with available tools.

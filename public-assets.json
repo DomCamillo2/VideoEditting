@@ -78,6 +78,24 @@
       "sha256": "cc794d0fec5f1dadbc2a096539e0f25d5007bc260de3f9e7d508f41e0a1d8166",
       "license": "MIT",
       "provenance": "Synthesized by tools/synth_audio.py without third-party samples."
+    },
+    {
+      "path": "examples/pipeline-preview.mp4",
+      "sha256": "c40c250ca405a5acd8696810a086ccd33ba7e7272e0a5f9dd12a7ae10dd92afd",
+      "license": "MIT",
+      "provenance": "Generated with tools/demo_project.py and ManifestFilm from original schematic drawings and synthesized audio; no private media or third-party samples."
+    },
+    {
+      "path": "docs/assets/pipeline-frames.jpg",
+      "sha256": "7dc846018d72fa52e2f0ce4c74d45eb051a5cddecf078410f2b165a6a3890a13",
+      "license": "MIT",
+      "provenance": "Generated with tools/demo_project.py and ManifestFilm from original schematic drawings and synthesized audio; no private media or third-party samples."
+    },
+    {
+      "path": "docs/assets/pipeline-selection.jpg",
+      "sha256": "f4657fca24712e0605b185798eaf1e092a4990d7f9c5cc02e3d8390988395b1d",
+      "license": "MIT",
+      "provenance": "Generated with tools/demo_project.py and ManifestFilm from original schematic drawings and synthesized audio; no private media or third-party samples."
     }
   ]
 }

@@ -23,3 +23,6 @@
 *.zip
 !dist/skills/*.zip
 !examples/effects-lab.mp4
+!examples/pipeline-preview.mp4
+
+.venv/

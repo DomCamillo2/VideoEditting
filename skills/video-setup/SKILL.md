@@ -34,3 +34,5 @@ If the host has a plugin/connector manager, use its actual discovery and connect
 - Save local setup decisions and observed status, for example `local/setup-v001.json`, with host, scope, selected/declined skills/integrations, verification and open items. No secrets; persisted preferences are not permission for unrelated future changes. Reuse choices next time, and refresh only changed/broken dependencies.
 
 Then start `video-brief` or the equivalent short style/humor/duration/format discussion, carrying over answers already known. Deliver a concise setup report and the next editing step. Do not claim software was installed merely because this skill was read.
+
+If the VideoEditting checkout is available, `python3 tools/film.py doctor` gives a read-only capability inventory for the executable pipeline. Optional Pillow/NumPy analysis packages and FFmpeg are separate from installing skill instructions; install only within the current authorized setup. The end-to-end guide provides a synthetic example without private assets.

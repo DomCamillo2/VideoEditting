@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "file": "examples/pipeline-preview.mp4",
+  "sha256": "c40c250ca405a5acd8696810a086ccd33ba7e7272e0a5f9dd12a7ae10dd92afd",
+  "checked_at": "2026-10-11T15:58:42.782900+00:00",
+  "frames": 540,
+  "expected_frames": 540,
+  "frame_count_matches": true,
+  "width": 960,
+  "height": 540,
+  "fps": "30/1",
+  "codec": "h264",
+  "pixel_format": "yuv420p",
+  "color_transfer": "bt709",
+  "color_space": "bt709",
+  "decode_exit_code": 0,
+  "decode_errors": "",
+  "black_intervals": [],
+  "loudness": {
+    "input_i": "-24.72",
+    "input_tp": "-10.19",
+    "input_lra": "0.90",
+    "input_thresh": "-34.76",
+    "output_i": "-16.03",
+    "output_tp": "-1.50",
+    "output_lra": "0.10",
+    "output_thresh": "-26.05",
+    "normalization_type": "dynamic",
+    "target_offset": "0.03"
+  },
+  "visual_review": {
+    "status": "sampled",
+    "frames": [
+      45,
+      95,
+      180,
+      216,
+      260,
+      297,
+      360,
+      450,
+      539
+    ],
+    "evidence": "docs/assets/pipeline-frames.jpg",
+    "findings": "Full portrait figures, matching blurred background, moving landscape, sticker spin and whip visible. No observed unintended black borders in sampled frames."
+  },
+  "listening_review": "pending",
+  "loudness_note": "input_* measures the file; output_* is discarded filter output, not applied normalization.",
+  "verification": {
+    "preview_sha256": "c40c250ca405a5acd8696810a086ccd33ba7e7272e0a5f9dd12a7ae10dd92afd",
+    "source_frame_comparison": {
+      "output_frame": 216,
+      "expected_source_frame_position": 28.8,
+      "observed_best_sample": 28,
+      "crop": "exclude top 150 pixels with label",
+      "mean_absolute_rgb_error_by_source_frame": {
+        "0": 6.976,
+        "5": 6.6101,
+        "28": 0.8275,
+        "29": 3.0171,
+        "30": 4.1583
+      }
+    },
+    "audio_measurement": {
+      "channel": 0,
+      "timeline_seconds": [
+        1,
+        2
+      ],
+      "source_seconds": [
+        1.5,
+        2.5
+      ],
+      "expected_amplitude_gain": 0.75,
+      "measured_gain": 0.7492,
+      "waveform_correlation": 0.99988,
+      "limitation": "Periodic signal cannot independently establish a half-second trim. This is a gain check, not a listening review."
+    }
+  },
+  "local_master": {
+    "sha256": "cfbc4442e578303b461d74065f889b33c21eb94b78175629830936984cc80f18",
+    "checked_at": "2026-10-11T16:00:09.395089+00:00",
+    "frames": 540,
+    "width": 1920,
+    "height": 1080,
+    "fps": "30/1",
+    "decode_exit_code": 0,
+    "black_intervals": [],
+    "published": false
+  }
+}
