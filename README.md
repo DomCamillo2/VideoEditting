@@ -73,6 +73,6 @@ npm run dev -- --no-open
 
 ## Was geteilt wird
 
-Code, allgemeine Erkenntnisse, synthetische Beispiele und Referenzlinks. Die drei vom Eigentümer zur öffentlichen Weitergabe freigegebenen Songs sind im Musikverzeichnis enthalten. Private Fotos, Rohvideos, Chatprotokolle und GPS-Kataloge gehören in `local/` bzw. `studio/public/local/` und sind von Git ausgeschlossen. [Rechte und Abhängigkeiten](NOTICE.md).
+Code, allgemeine Erkenntnisse, eigene synthetische Beispiele und Referenzlinks. Fremde Songs sind nicht enthalten. Musik für eigene Projekte, private Fotos, Rohvideos, Chatprotokolle und GPS-Kataloge gehören in `local/` bzw. `studio/public/local/` und sind von Git ausgeschlossen. [Rechte und Abhängigkeiten](NOTICE.md).
 
 Stand der Recherche: **11. Oktober 2026**. Der Starter pinnt Remotion 4.0.534; Web-Dokumentation kann inzwischen andere APIs zeigen. [Prüfstand](docs/validation.md).

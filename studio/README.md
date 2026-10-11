@@ -36,4 +36,4 @@ Vorhandene Outputs werden nicht automatisch überschrieben. Bei einem neuen Expo
 
 Alle Remotion-Pakete exakt 4.0.534, Lockfile mitliefern. `typescript-eslint` ist auf 8.71.1 überschrieben, weil die vom Remotion-Lint-Preset gepinnte ältere Version eine gemeldete transitive Abhängigkeit mitbrachte; Lint/TypeScript werden gegen die aktualisierte Variante geprüft. Keine beliebige `npm audit fix --force`-Aktualisierung über API-Hauptversionen hinweg.
 
-Die eigenen Demografiken und synthetischen Sounds sind unter MIT nutzbar. Musik unter `../music/tracks/` hat eine separate dokumentierte Freigabe und wird in der Demo nicht abgespielt.
+Die eigenen Demografiken und synthetischen Sounds sind unter MIT nutzbar. Die Demo verwendet ausschließlich diese selbst erzeugten Sounds. Fremde Songs werden nicht mitgeliefert; Musik für eigene Projekte bleibt im ignorierten Ordner `public/local/music/`.

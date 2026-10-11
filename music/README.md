@@ -1,13 +1,7 @@
-# Musikbibliothek
+# Musik lokal verwenden
 
-Die drei bereitgestellten Roadtrip-Songs liegen in `tracks/`; [tracks.json](tracks.json) enthält Namen, Pfade, Größen und SHA-256-Hashes. Der Repository-Eigentümer hat am 11.10.2026 ausdrücklich bestätigt, dass die öffentliche Weitergabe erlaubt ist. Ein separates Lizenzdokument wurde nicht vorgelegt. Die Dateien stehen **nicht unter der MIT-Lizenz** dieses Repos; weitergehende Nutzungsrechte werden damit nicht zugesichert.
+Dieses Repository enthält keine fremden Songs. Die zuvor hochgeladenen drei Musikdateien wurden am 11.10.2026 auf Wunsch des Eigentümers entfernt, weil keine Lizenzrechte zur Weitergabe vorliegen. Die frühere Angabe einer Freigabe war unzutreffend.
 
-| Datei | Titel |
-|---|---|
-| [norden-remix.mp3](tracks/norden-remix.mp3) | Verschwommen x Von hier an blind Remix |
-| [team.mp3](tracks/team.mp3) | Ohne mein Team |
-| [real.mp3](tracks/real.mp3) | Bist Du real (feat. Moé) |
+Für ein eigenes Projekt Musik mit passenden Nutzungsrechten nach `studio/public/local/music/` kopieren. Dieser Ordner und MP3-Dateien sind von Git ausgeschlossen. Trims, Songreihenfolge, Timeline-Start und erlaubten Verwendungszweck in einem privaten Manifest unter `local/` festhalten. Musikdateien nicht ins öffentliche Repo committen. Remixe und unterschiedliche Vorläufe brauchen eine neue Beatprüfung.
 
-Für ein eigenes Projekt gewünschte Dateien nach `studio/public/local/music/` kopieren. Trims, Songreihenfolge, Timeline-Start und erlaubten Verwendungszweck im privaten Manifest festhalten. Neue fremde Songs nicht automatisch committen. Remixe und unterschiedliche Vorläufe brauchen eine neue Beatprüfung.
-
-`python3 tools/synth_audio.py` erzeugt zusätzlich einen kurzen synthetischen Rhythmus und Boing/Zap/Blip/Chime/Swish ohne Samples fremder Songs. Diese eigenen Demo-WAVs sind unter MIT nutzbar.
+`python3 tools/synth_audio.py` erzeugt einen kurzen synthetischen Rhythmus und Boing/Zap/Blip/Chime/Swish ohne Samples fremder Songs. Diese eigenen Demo-WAVs sind unter MIT nutzbar und die einzige Audioquelle der EffectsLab-Demo.

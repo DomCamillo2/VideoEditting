@@ -11,7 +11,7 @@ Stand: 11.10.2026. Ergebnisse für den Toolkit-Starter, getrennt vom historische
 - Synthetische Demo vollständig exportiert: 810 Frames, 27 Sekunden, 960×540, 30 fps, H.264, yuv420p, BT.709. Vollständiger Decode bestanden, keine Schwarzintervalle erkannt. [Messbericht](demo-qa.json).
 - Neun repräsentative Frames des finalen Encodes visuell kontrolliert. Zusätzliche Bewegungsphasen und Grenzen des ersten Testencodes geprüft; drei Kontaktbögen des finalen Encodes liegen unter [assets](assets/). Bewusstes Verlassen der Leinwand bei Rakete/Davonlaufen ist Teil des Effekts.
 - Die tatsächliche Demo misst −32,88 LUFS / −18,13 dBTP; sie ist eine leise synthetische Timing-Demonstration, kein fertig gemasterter Musikfilm.
-- Musikdateien vor der Veröffentlichung gegen die drei im Manifest gespeicherten SHA-256-Hashes geprüft.
+- Die drei zuvor hochgeladenen fremden Songs und ihr Manifest wurden wegen fehlender Weitergaberechte entfernt, einschließlich ihrer Dateien in der veröffentlichten Git-Historie. MP3-Dateien sind ohne Ausnahme von Git ausgeschlossen. Eigene synthetische Demo-Sounds bleiben enthalten.
 - Lokale Markdown-Verweise und öffentliche Pfad-Hygiene geprüft. GitHub Actions führt Tests, Timeline-Prüfung, Linkprüfung, Skill-Paketprüfung, Lint und Build bei Push/PR aus.
 
 Die Skill-Erweiterung ändert keine Film-/Demo-Komposition. Dafür wurden Python-Prüfungen, Paketprüfung, TypeScript/Lint und Bundle ausgeführt; die oben dokumentierten Render-/Messwerte gehören weiterhin zur unveränderten Demo. [Verhaltensfälle und Grenzen der Skill-Prüfung](skill-evaluation.md).
