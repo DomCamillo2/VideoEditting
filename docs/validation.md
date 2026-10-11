@@ -2,7 +2,7 @@
 
 Stand: 11.10.2026. Ergebnisse für den Toolkit-Starter, getrennt vom historischen Roadtrip.
 
-- 92 Python-Tests bestanden, mit den optionalen Pillow-/NumPy-Abhängigkeiten: 69 bestehende Prüfungen für Metadaten, Timeline, Beatbericht, Quellbereiche, Handoff, Veröffentlichung und Skill-Installation; 23 neue Prüfungen für Orientierung, Schärfevergleich, Fokusregionen, stabile Medien-IDs, Duplikate, Ähnlichkeitsgruppen, Onsets, Renderdaten, tatsächliche Quellstreams, Browser-Retry und Überschreibschutz. Ohne Analysepakete werden die betreffenden Tests ausdrücklich übersprungen.
+- 93 Python-Tests bestanden, mit den optionalen Pillow-/NumPy-Abhängigkeiten: 69 bestehende Prüfungen für Metadaten, Timeline, Beatbericht, Quellbereiche, Handoff, Veröffentlichung und Skill-Installation; 24 neue Prüfungen für Orientierung, Schärfevergleich, Fokusregionen, stabile Medien-IDs, Duplikate, Ähnlichkeitsgruppen, Onsets, Renderdaten, rationale Tempo-/Audioangaben, tatsächliche Quellstreams, Browser-Retry und Überschreibschutz. Ohne Analysepakete werden die betreffenden Tests ausdrücklich übersprungen.
 - Beide Beispiel-Timelines ohne Fehler/Warnungen validiert; CLI-Smoke-Tests für CSV-Schnittliste und Beatreport bestanden. Quell-In/Out und Timeline-Grenzen im CSV kontrolliert.
 - Alle zehn Skill-Frontmatter mit dem Skill-Creator-Validator geprüft. Interne Ressourcen sind ohne Repository verfügbar; Kopien für Codex/Claude und ZIPs stimmen mit ihren Quellen überein. Installation beider Host-Varianten in einem temporären Projekt und identische Wiederholungsinstallation getestet.
 - Remotion TypeScript/Lint und Bundle bestanden.

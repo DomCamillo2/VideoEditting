@@ -108,6 +108,12 @@ def prepare(data,root,props_output,studio=STUDIO,probe=True):
     if errors:raise ValueError('; '.join(errors))
     if probe:check_sources(data,root)
     manifest=copy.deepcopy(data)
+    # The interchange schema accepts rational strings; Remotion expects numeric props here.
+    for shot in manifest['shots']:
+        if shot.get('source'):
+            shot['source']['playback_rate']=float(rational(shot['source'].get('playback_rate',1),positive=True))
+    for track in manifest.get('audio',[]):
+        track['source_in_seconds']=float(rational(track.get('source_in_seconds',0)))
     stage=Path(studio)/'public/local'/('film-'+uuid.uuid4().hex)
     if Path(studio).resolve() not in stage.resolve().parents:raise ValueError('Staging path escapes studio')
     stage.mkdir(parents=True,exist_ok=False)

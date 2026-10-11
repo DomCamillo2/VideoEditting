@@ -99,6 +99,15 @@ class FilmTests(unittest.TestCase):
             root=Path(td);data=self.fixture(root);(root/'props.assets.json').write_text('{}')
             with self.assertRaises(FileExistsError):film.prepare(data,root,root/'props.json',studio=root/'studio',probe=False)
             self.assertFalse((root/'studio').exists());self.assertFalse((root/'props.json').exists())
+    def test_rational_rates_and_audio_offsets_become_numeric_props(self):
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td);data=self.fixture(root)
+            data['shots'][0].update(kind='video',source=dict(fps='24/1',in_frame=0,out_frame=108,playback_rate='3/2'))
+            data['audio']=[dict(asset='sound.wav',start_frame=0,duration_frames=90,volume=.5,source_in_seconds='1/2')]
+            props=film.prepare(data,root,root/'props.json',studio=root/'studio',probe=False)
+            self.assertEqual(props['manifest']['shots'][0]['source']['playback_rate'],1.5)
+            self.assertEqual(props['manifest']['audio'][0]['source_in_seconds'],.5)
+            self.assertEqual(data['audio'][0]['source_in_seconds'],'1/2')
     def test_serious_style_rejects_sticker_gag(self):
         with tempfile.TemporaryDirectory() as td:
             root=Path(td);data=self.fixture(root);data['effects']=[dict(type='sticker',asset='image.png',start_frame=0,duration_frames=60)]
