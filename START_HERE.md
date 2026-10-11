@@ -7,6 +7,7 @@
 3. Führe Inventur und Metadatenprüfung durch. Lies `docs/metadata-routes.md`. Speichere Rohwerte, angewandte Zeitzonen und Konflikte. Unbekannt bleibt unbekannt.
 4. Vergleiche ähnliche Aufnahmen mit Kontaktbögen und prüfe die Schärfe am Motiv. Wähle die stärksten unterschiedlichen Momente, statt fünf Varianten derselben Aufnahme. [Auswahl](docs/media-selection.md). Lege Geschichte, Songabschnitte und Beatkanten fest; lies `docs/music-beats.md`. Übergänge/Comedy folgen dem gewählten Stil.
 5. Benutze `studio/src/` als Effektbibliothek, nicht als automatischen Filmschneider. Ersetze Demo-SVGs durch geprüfte eigene Assets. Die Demo-Effektdichte ist bewusst hoch; übertrage sie nicht unverändert auf ruhige Filmszenen.
+   Wertvolle stark verwackelte Clips vor Framing und Effekten gezielt [stabilisieren und vergleichen](docs/workflow.md#stark-verwackelte-clips-gezielt-stabilisieren). Beschnitt, Verformungen und Timing kontrollieren; gewollte Kamerabewegung erhalten.
 6. Erstelle eine kleine vertretende Vorschau, kontrolliere Hochformat, stärksten Übergang, freigestellte Person, dunkle Szene, Songwechsel und Originalton. Danach vollständige Vorschau, Korrektur, gewünschter Export.
 7. Übergib Filmdatei, bearbeitbares Projekt, Medien-/Musikmanifest, offene Punkte und Prüfbericht. Verwende `templates/handoff.md`.
 

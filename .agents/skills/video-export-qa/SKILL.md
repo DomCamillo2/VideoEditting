@@ -18,6 +18,7 @@ Read the brief and intended deliverable. A small fix needs checks proportional t
 
 1. Review chronology/chapter labels, repeated shots, emotional pacing, unwanted gags and ending. Check no fabricated route or embarrassing selection slipped in. Keep key people/gestures clear of text and effects.
 2. Review protected portrait crops at start/middle/end and motion extremes; look for black/transparent edges, stretching, desynchronized blurred backgrounds and cutout halos. Check anchors through movement and occlusion.
+   For stabilized clips, compare the corrected motion with the original at playback speed. Check worst jolts for lost heads/hands/feet, wobbling geometry, edge fills, zoom pumping and blur; verify duration, frame mapping, audio sync and any tracking rebuilt after stabilization. Bind approval to the corrected derivative's hash and reviewed intervals.
 3. Review audible beat accents and dialogue ducking. Count marker alignment separately from actual listening. Check source-to-timeline offsets after transitions and speed changes.
 4. If captions are requested, verify words/timing, readable duration, contrast, line breaks and placement against faces and destination UI. Review strong flashes or excessive shake and soften unnecessary ones.
 5. Render a new version and fully decode the actual file. Inspect codec, resolution, fps, duration/frame count, audio streams and missing-media indications. Measure black intervals, silence, loudness and true peaks if tools are available; classify intentional darkness/silence manually.

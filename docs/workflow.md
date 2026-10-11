@@ -27,6 +27,14 @@ Exakte Duplikate per Hash markieren. Ähnliche Bilder anhand Kontaktbögen vergl
 
 Jeder gewählte Clip braucht einen Zweck: Ort zeigen, Bewegung tragen, Beziehung zeigen, Pointierung oder Pause. Ausschlussgründe knapp dokumentieren: Duplikat, Wiederholung, verwackelt, ungünstiger Ausschnitt, schwacher Moment, nicht ausgewählt. „Nicht verwendet“ bedeutet nicht automatisch „schlecht“.
 
+## Stark verwackelte Clips gezielt stabilisieren
+
+Bei einem wichtigen, deutlich verwackelten Moment zuerst störende Anfänge/Enden kürzen oder eine ruhigere Alternative vergleichen. Bleibt die Stelle wertvoll, mit einem vorhandenen Stabilisator eine neue lokale Vergleichsversion erstellen. Mit geringer Stärke beginnen und nur so weit erhöhen, wie Bewegung und Bildausschnitt davon profitieren. Gewollte Schwenks, lebendige Handkamera und Comedy-Shakes bewusst erhalten.
+
+Original und Korrektur in Bewegung vergleichen: bleiben Köpfe, Hände und Füße vollständig, Gebäude und Gesichter unverzerrt, Ränder sauber und der Zoom ruhig? Starke Bewegungsunschärfe lässt sich durch Stabilisierung nicht einfach scharf machen. Bei schlechtem Ergebnis Stärke reduzieren, eine kürzere Stelle verwenden oder mit dokumentiertem Grund beim Original bleiben. Quellmedien bleiben unverändert.
+
+Stabilisierung erfolgt vor endgültigem Hochformat-Ausschnitt, Gesichtstracking, Freistellern und Effekten. Danach Zeitbezug, Originalton und Beatpositionen prüfen. [Konkreter Ablauf, Werkzeugprüfung und Übergabe](../skills/video-editing/references/stabilization.md). Die Anleitung nutzt vorhandene Editor-/FFmpeg-Funktionen; der JSON-Renderer selbst enthält keinen Stabilisator und erkennt Verwacklung nicht automatisch.
+
 ## Nutzerkorrekturen ernst nehmen
 
 „Viel mehr funny“ darf zu deutlich mehr Comedy führen. Erhöhe passende Momente und Variationen, nicht nur die Stärke desselben Zooms. Wenn die genaue letzte Hafenroute dem Nutzer egal ist, keine zusätzliche Recherche zum Blocker machen: neutral beschriften und Unsicherheit dokumentieren. Ein stimmiger Rückblick darf die Chronologie verlassen, wenn er klar als Finale erkennbar ist; Hauptreise und Rückblick getrennt prüfen.

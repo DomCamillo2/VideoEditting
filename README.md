@@ -73,6 +73,7 @@ npm run dev -- --no-open
 | Mehr lustige Dinge | [Comedy-Kochbuch](docs/comedy.md), [ausführbarer Baukasten](studio/README.md) |
 | Übergänge wie in schnellen Edits | [Übergänge](docs/transitions.md), [Motion-Recherche](docs/motion-research.md) |
 | Hochformat und Reels | [Framing](docs/framing.md), [Reels](docs/reels.md) |
+| Stark verwackelte Aufnahmen retten | [Gezielte Stabilisierung und Vergleich](docs/workflow.md#stark-verwackelte-clips-gezielt-stabilisieren) |
 | Vorschau und fertiger Export | [QA und Rendering](docs/qa-render.md), [Werkzeuge](tools/README.md) |
 | Erfahrungen und bekannte Fehler | [Fallstudien](docs/learnings.md), [Provenienz](docs/provenance.md) |
 | Weitere wichtige Schnittentscheidungen | [Recherche: Auswahl, Ton und Qualität](docs/editing-research.md) |

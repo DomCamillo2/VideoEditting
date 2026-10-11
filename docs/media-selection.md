@@ -20,6 +20,7 @@ Das ist ein erklärendes Beispiel, keine durchgeführte Analyse echter Fotos. Or
 2. Kandidaten im Original bzw. bei brauchbarer Auflösung vergleichen; relevante Gesichter/Motive vergrößern. Automatische Schärfe- oder Ähnlichkeitswerte nur als Hinweise verwenden.
 3. Pro engem Cluster normalerweise ein starkes Bild auswählen. Weitere Bilder brauchen eine neue Handlung, Perspektive oder Reaktion. Ein ganzes Ereignis darf natürlich mehrere unterschiedliche Bilder bekommen.
 4. Bei Videos geeignete **Zeitabschnitte** sichten: nicht nur Anfangsframe, sondern Bewegung, Ton, Fokusverlust, Verwacklung und saubere Schnittpunkte.
+   Einen wichtigen Moment bei anhaltendem Kamerawackeln vor dem Aussortieren mit einer vorsichtig stabilisierten Version vergleichen; Beschnitt und Verformungen mitprüfen. [Stabilisierung im Workflow](workflow.md#stark-verwackelte-clips-gezielt-stabilisieren).
 5. Entscheidung und Grund in [culling.csv](../templates/culling.csv) festhalten; technische Unsicherheit als `review` markieren. Die bestehende [Schnittauswahl](../templates/selection.csv) ergänzt anschließend Quellbereiche, Framing und Kapitel.
 6. Im Rohschnitt Wiederholungen zwischen benachbarten Clustern und eine faire Mischung aus Personen, Tätigkeiten und Landschaft prüfen. Keine starre Personenquote, keine einzelne Person ständig als Gag-Ziel.
 

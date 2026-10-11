@@ -8,6 +8,7 @@
 - Medienordner und relatives Manifest:
 - Schnittliste mit Quell-In/Out, exklusiven Endframes, Quell-/Timeline-fps und Tempo:
 - Proxy-zu-Original-Zuordnung, Hashes und VFR-/Retime-Besonderheiten:
+- Stabilisierte Clips: Original/Derivat mit Hashes, Quellzeit-Zuordnung, Tool/Einstellungen, Beschnitt und Entscheidung:
 - Musikstand mit Hashes und Trims:
 - Aktuelle Nutzerwünsche:
 - Bereits erledigt:
@@ -24,6 +25,7 @@
 | Orte und Verkehrsmittel | pending | |
 | Framezahl / Decode | pending | |
 | Masken und Gesichtscrops | pending | |
+| Stabilisierung im Vorher-/Nachher-Vergleich, falls verwendet | pending | |
 | Schwarz-/Randkontrolle | pending | |
 | Technische Beatplatzierung | pending | |
 | Tatsächlich mit Ton angesehen | pending | |

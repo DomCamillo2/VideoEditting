@@ -21,6 +21,7 @@ Inputs: media folder/catalog, film purpose, target length, must-keep/avoid prefe
 - **Expression/framing:** compare natural expressions, occlusion and cut-off heads/hands. Closed eyes during laughter can be the best moment. Choose a flattering group take without optimizing only one person. Do not identify people by name or infer attributes from faces.
 - **Story:** prefer a distinct activity, reaction or relationship. A technically softer but unique meaningful moment can stay with an explicit reason. Do not select embarrassing moments merely because the brief says funny.
 - **Videos:** watch candidate spans, not only their first frame. Trim shake/recording starts and dead endings; record source in/out points, useful original sound and mid-clip focus loss or obstruction. Keep clean handles if a transition needs them.
+- **Persistent camera shake:** before excluding a valuable moment, try a modest stabilized comparison with an available tool. Preserve intentional movement and the original file. Check crop, heads/feet, warped geometry, edge artifacts and playback; stabilization does not restore missing motion-blurred detail. Record whether the original, corrected span or another take works best. A motion score alone must not trigger aggressive stabilization.
 
 ## Make a deliberate choice per cluster
 

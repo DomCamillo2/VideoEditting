@@ -13,6 +13,7 @@ Animationen nur aus `useCurrentFrame()` und `fps` ableiten. Asset-Ladevorgänge 
 3. Vollständig decodiert. Schwarzintervalle gemessen und visuell bewertet; dunkle Nachtbilder nicht blind verwerfen.
 4. Finalen Audio-Mix im tatsächlichen MP4 messen. Loudness/True Peaks und Sprache/Musik-Verhältnis getrennt beurteilen.
 5. Kritische Übergänge, Masken und Ränder visuell prüfen. Beatcut mit Ton kontrollieren oder den Hörstatus ausdrücklich offenlassen.
+   Stabilisierte Clips zusätzlich in Bewegung mit dem Original vergleichen: schlimmste Ruckler, Beschnitt, Gesichts-/Gebäudeverformungen, Ränder, pumpender Zoom und Ton-Synchronität. Nach neuem Beschnitt oder Stabilisierung vorhandene Trackingpunkte erneut prüfen.
 6. Dateihash + Prüfdatum + Codeversion + Ausgabeparameter speichern. Verschiedene Versionen niemals mit demselben Prüfbericht versehen.
 
 `tools/editing.py qa` automatisiert Probe, Decode, Blackdetect und Loudness. Es erkennt **keine** falsch zugeordneten Orte, schlechten Gesichtscrops, unlustigen Gags oder musikalisch falschen Beatmarken. „Technisch bestanden“ ist deshalb nicht „kreativ freigegeben“.
